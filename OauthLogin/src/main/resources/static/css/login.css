@@ -1,0 +1,282 @@
+@charset "UTF-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 290px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+.loginform{
+    margin-left: 50px;
+}
+.loginText{
+    width: 550px;
+    font-size: 30px;
+    line-height: 0px;
+    text-align: center;
+}
+.btn01{
+    width: 270px;
+    height: 40px;
+}
+.btn02{
+    width : 255px;
+    height: 35px;
+}
+.NAVER{
+    background-color: rgb(2, 201, 2);
+    border : solid 1px rgb(2, 201, 2);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: white;
+}
+.GOOGLE{
+    background-color: rgb(136, 136, 136);
+    border: solid 1px rgb(136, 136, 136);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: white;
+}
+.KAKAO{
+    background-color: rgb(248, 248, 12);
+    border: solid 1px rgb(248,248,12);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: black;
+}
+.BASIC{
+    background-color: black;
+    border: solid 1px black;
+    margin-bottom: 12px;
+    margin-left: 7.5px;
+    color: white;
+    margin-left: 122px;
+}
+.stick01{
+    width: 550px;
+    height: 5.5px;
+    background-color: purple;
+}
+.stick02{
+    width: 450px;
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 8px;
+}
+p{
+    display: inline-block;
+}
+.id{
+    /*font: 23px solid black;*/
+    /*font: solid 23px black; */
+    margin-left: 45px;
+}
+.pw{
+    /*font: 23px solid black;*/
+    /*font : solid 23px black;*/
+    margin-left: 29.5px;
+}
+.inputId{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 15px;
+    width: 270px;
+    height: 40px;
+}
+.inputId::placeholder{
+    text-align: center;
+}
+.inputPw{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 15px;
+    width: 270px;
+    height: 40px;
+}
+.inputPw::placeholder{
+    text-align: center;
+}
+.findId{
+    margin-left: 330px;
+    /*font : solid samller black;*/
+    font : samller solid black;
+}
+.findPw{
+    font-size: 0.1em;
+}
+.findIdPwText{
+    font-size: 0.1em;
+}
+.a01{
+    text-decoration: none;
+    font-size: 0.1em;
+}
+.wrong{
+    font-size: 13px;
+    font-weight: bold;
+    color: red;
+    margin-left: 143px;
+}
+.duplicated{
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    margin-left: 350px;
+    width: 201px;
+    height: 15px;
+    text-align: center;
+}

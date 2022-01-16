@@ -1,0 +1,9 @@
+@charset "utf-8";
+body{
+    margin-top: 50px;
+    margin-left: 40px;
+    text-align: center;
+}
+
+ul{padding-bottom: 10px}
+a{display: block; overflow: hidden; position: relative}

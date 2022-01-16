@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이디 찾기</title>
+<!--<link th:href="@{/css/findId.css}" rel="stylesheet" /> -->
+<style>
+    body{
+        margin-top: 150px;
+        margin-left: 140px;
+    }
+    .Title{
+        width: 357px;
+        font-size: 30px;
+        text-align: center;
+    }
+    p{
+        display: inline-block;
+    }
+    .name{
+        font-size: 20px;
+        line-height: 1px;
+    }
+    .email{
+        font-size: 20px;
+        line-height: 11px;
+    }
+    .inputName{
+        background-color: rgb(221, 221, 221);
+        border : solid 1px rgb(221,221,221);
+        margin-left: 35px;
+        width: 270px;
+        height: 40px;
+    }
+    .inputName::placeholder{
+        text-align: center;
+    }
+    .inputEmail{
+        background-color: rgb(221, 221, 221);
+        border : solid 1px rgb(221,221,221);
+        margin-left: 15px;
+        width: 270px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    .inputEmail::placeholder{
+        text-align: center;
+    }
+    .btnfindId{
+        border: solid 1px black;
+        margin-left: 80.5px;
+        width: 276px;
+        height: 38px;
+        color: white;
+        background-color: black;
+    }
+    .modal{
+        position: absolute;
+        top :0;
+        left :0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: gray;
+    }
+    .modal.show{
+        display: block;
+    }
+    .modal_body{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        width: 200px;
+        height: 100px;
+
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+
+    }
+    .submit{
+        display: none;
+    }
+</style>
+</head>
+<body style="overflow: auto;">
+    <div class="modal">
+        <div class="modal_body">아이디 : hong</div>
+    </div>
+    <p class="Title">아이디 찾기</p>
+    <form action="#" method="post" name="userinput">
+        <p class="name">이름</p> <input type="text" class="inputName" placeholder="이름을 입력해주세요"><br>
+        <p class="email">이메일</p> <input type="text" class="inputEmail" placeholder="이메일을 입력해주세요"><br>
+        <button type="submit" class="submit"></button>
+    </form>
+        <button class="btnfindId">아이디 찾기</button>
+ 
+  <script>
+        const body = document.querySelector('body');
+        const modal = document.querySelector('.modal');
+        const btnFindId = document.querySelector('.btnfindId');
+
+       
+        btnFindId.addEventListener('click', () => {
+
+            modal.classList.toggle('show');
+            console.log(modal);
+            if(modal.classList.contains('show')){
+                body.style.overflow = 'hidden';
+            }
+        });
+
+        modal.addEventListener('click', (event) => {
+            if(event.target === modal){
+                modal.classList.toggle('show');
+                
+                if(!modal.classList.contains('show')){
+                    body.style.overflow = 'auto';
+                }
+            }
+        });
+        
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,508 @@
+@charset "utf-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 290px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+
+/*-----------------------------------*/
+.btnSearch01{
+    margin-left: -37px;
+    margin-top: -2px;
+    background-color: white;
+}
+
+.pageTitle {
+    text-align: center;
+}
+
+.pageTitle .tit{
+    text-align: center;
+    margin-left: 60px;
+}
+
+#catagory {
+    border-style: solid;
+    border-color: #EEEEEE;
+    height: 50px;
+    width: 850px;
+    margin-left: 90px;
+
+}
+
+#catagory ul li {
+    list-style: none;           /* <li> 태그는 위의 이미지처럼 목록을 나타내는 점을 없앤다 */
+    color: #E0E0E0;               /* 글씨 색을 회색으로 설정*/
+    background-color: white;  /* 배경색을 흰색으로 설정*/
+    float: left;                /* <li>태그들이 왼쪽에 흐르게 설정(그러면 아래있는 내용은 오른쪽으로 옴)*/
+    line-height: 15px;          /* 글씨가 가운데로 오도록 설정하기 위해 한줄의 높이를 80px로 설정*/
+    vertical-align: middle;     /* 세로 정렬을 가운데로 설정(위의 line-height와 같이 설정 필요함)*/
+    text-align: center;         /* 글씨 정렬을 가운데로 설정*/
+}
+
+#catagory .menuLink {                               /* catagory 아이디를 가진 태그 안에 있는 menuLink 클래스 태그들의 스타일 설정*/
+    text-decoration:none;                      /* 링크(<a> 태그)가 가지는 기본 꾸밈 효과(밑줄 등)을 없앰*/
+    color: gray;                              /* 폰트색을 회색으로 설정*/
+    display: block;                            /* 링크를 글씨가 있는 부분 뿐만아니라 전체 영역을 클릭해도 링크가 걸리게 설정*/
+    width: 150px;                              /* 메뉴링크의 넓이 설정*/
+    font-size: 12px;                           /* 폰트 사이즈 12px로 설정*/
+    font-weight: bold;                         /* 폰트를 굵게*/
+    font-family: "Trebuchet MS", Dotum, Arial; /* 기본 폰트 적용, 시스템 폰트를 종류별로 순서대로*/
+}
+
+#catagory .menuLinktotal { /**확인받을것**/
+    text-decoration:none;
+    color: #EC407A;
+    display: block;
+    width: 150px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum, Arial;
+}
+
+#catagory .menuLink:hover {/*menuLink클래스를 가진 태그에 마우스가 over되면 스타일 설정*/
+    color: #EC407A;
+}
+
+#sortmenu {
+    height: 30px;
+    width: 340px;
+    margin-left: 600px;
+}
+
+#sortmenu ul {
+    width: 310px;
+    position: relative;
+
+}
+
+#sortmenu ul li {
+    list-style: none;
+    display: inline-block;
+    width: 50px;
+    position: relative;
+    font-size: 10px;
+
+
+    /* list-style: none;
+    color: #000;
+    background-color: white;
+    float: left;
+    line-height: 15px;
+
+    text-align: center;
+    display: inline; */
+
+}
+
+
+/*#sortmenu li::after{*/
+/*    content: "|";*/
+/*    position: absolute;*/
+/*}*/
+
+#sortmenu li:last-child::after{
+    content: none;
+}
+
+#sortmenu .menutype {
+    text-decoration:none;
+    color: gray;
+    display: block;
+    width: 60px;
+    font-size: 7px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum, Arial;
+
+}
+
+#sortmenu .totalmenu { /**확인받을것**/
+    text-decoration:none;
+    color: #EC407A;
+    display: block;
+    width: 60px;
+    font-size: 7px;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Dotum, Arial;
+
+}
+
+
+#sortmenu .menutype:hover {
+    color: #EC407A;
+}
+
+.pageContents {
+    margin-left: 55px;
+    text-align: center;
+}
+.pageContents .list{ /**상품리스트 한개**/
+    float: left;
+    list-style: none; /**리스트효과 없애기**/
+    width: 250px;
+    margin-top: 20px;
+    position: relative;
+}
+.pageContents img {
+
+    position: relative;
+    z-index: 1;
+}
+
+.pageContents .heartIcon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    margin-left: 210px;
+    margin-top: 260px;
+}
+
+.pageContents .cartIcon{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    z-index: 2;
+    margin-left: 170px;
+    margin-top: 255px;
+}
+
+.pageContents .listname {
+    font-weight: bold;
+    color:black;
+    font-size: 10px;
+    margin-top: 10px;
+}
+.goodNumberCount{
+    margin-left: 182px;
+    margin-top: -14px;
+}
+
+.pageContents .dc {
+    display: flex;
+    width: 50px;
+    margin-left: 100px;
+}
+.pageContents .dc .number{ /**할인율**/
+    font-size : 7px;
+    color:red;
+    font-weight: bold;
+    flex: 1;
+
+
+}
+
+.pageContents .dc .symbol{
+    font-size : 7px;
+    color:red;
+    flex: 1;
+
+
+}
+
+.pageContents .dc .listcost {
+    font-size: 10px;
+    flex: 1;
+    margin-left: 10px;
+    width: 90%;
+}
+.find{
+    /*display: block;*/
+    width: 270px;
+    height: 30px;
+    margin-bottom: -36px;
+}
+.glasses{
+    width: 21px;
+    height: 25px;
+    margin-top: 1px;
+}
+.div01{
+    margin-left: 278px;
+    margin-top: -26px;
+}
+a{
+    text-decoration:none
+}
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+.pagination-lg .page-item:first-child .page-link {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.pagination-sm .page-item:first-child .page-link {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+.pagination-lg .page-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.pagination-lg .page-item:first-child .page-link {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.pagination-sm .page-item:first-child .page-link {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+.h-100 {
+    height: 100% !important;
+}
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+.ulcenter{
+    width: 1000px;
+}

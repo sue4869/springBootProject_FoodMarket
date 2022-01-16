@@ -1,0 +1,579 @@
+@charset "utf-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 290px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+
+.pageContents .goodDetail{
+    list-style: none;
+    display: flex;
+}
+
+.pageContents .goodImg{
+    flex: 1;
+    width: 300px;
+    height: 350px;
+}
+.pageContents .goodInformation {
+    flex: 1;
+    margin-top: 30px;
+    margin-left: 30px;
+
+
+}
+
+.pageContents .goodname {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.pageContents .goodTable {
+    margin-top: 10px;
+}
+
+.pageContents .tabletitle {
+    margin-right: 25px;
+    margin-top: 20px;
+}
+
+.pageContents .tablecontents {
+    padding-left: 50px;
+}
+.pageContents .lineborder {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 2px #E0E0E0 solid;
+    height: auto;
+    width: 100%;
+}
+
+.pageContents .checkamount {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.pageContents .counttitle{
+    flex: 1;
+    width: 20px;
+    padding-right: 10px;
+}
+
+.pageContents .numberarea {
+
+    width: 20px;
+}
+
+.pageContents .minusbutton {
+
+    width: 23px;
+}
+
+.pageContents .addbutton {
+
+    width: 23px;
+}
+
+.pageContents .checkprice {
+    text-align: right;
+}
+
+.pageContents .pricetitle {
+    font-size: 10px;
+}
+
+.pricezone {
+    display: flex;
+    margin-left: 250px;
+}
+
+.pageContents .goodPrice {
+    font-size: 25px;
+}
+.pageContents .won {
+    font-size: 10px;
+    margin-top: 15px;
+}
+
+.pageContents .buyproduct {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.pageContents .gobasket {
+    flex-basis: 300px;
+    margin-right: 10px;
+    border: solid #AD1457;
+    background-color: white;
+}
+
+.pageContents .goorder {
+    border: solid #AD1457;
+    background-color: white;
+}
+
+.pageContents .goodview {
+    display: flex;
+}
+
+.pageContents .goods-view-infomation-tab {
+    display: flex;
+    flex: 1;
+    vertical-align: top;
+}
+
+.pageContents .goods-view-infomation-tab-anchor {
+    flex: 1;
+    position: relative;
+    top: 1px;
+    height: 60px;
+    line-height: 59px;
+    text-align: center;
+    display: block;
+    color: #666;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.3px;
+    font-family: noto sans;
+    background-color: #fafafa;
+    border: 1px solid #eee;
+}
+.pageContents .goodview_information_img {
+    text-align: center;
+}
+
+.pageContents .goodview_first_img {
+    width: 650px;
+    height: 400px;
+}
+
+.pageContents .goodview_second_divimg{
+    text-align: center;
+}
+
+.pageContents .goodview_second_img {
+    margin-top: 20px;
+    width: 300px;
+    height: 500px;
+}
+
+.pageContents .context {
+    margin-top: 20px;
+}
+
+.pageContents .contexmainword {
+    padding-bottom: 20px;
+    font-size: 20px;
+    line-height: 46px;
+    text-align: center;
+    color: #666;
+
+}
+
+.pageContents .contextword {
+    font-size: 10px;
+    line-height: 20px;
+    color: #373737;}
+
+.pageContents #good_review {
+    margin-top: 50px;
+
+}
+.pageContents .reviewtitle .bigreviewtitle {
+    font-size: 3px;
+
+}
+.pageContents .reviewtitle .reviewalarm {
+    font-size: 1px;
+    color: #939393;
+    display: flex;
+}
+
+.pageContents .reviewtitle .sort .sortcontents{
+    font-size: 1px;
+    border: 1px solid #bfbfbf;
+    line-height: 34px;
+    vertical-align: middle;
+    height: 15px;
+    width: 75px;
+    margin-left: 6px;
+    color: #666666;
+
+
+}
+
+.pageContents .reviewtable {
+    width: 100%;
+    font-size: 1px;
+    margin-top: 10px;
+    color: #666666;
+}
+
+.pageContents .review_date {
+    font-size: 1px;
+}
+
+/****************************************/
+
+.pageContents .reviewtable_usercontent {
+    width: 100%;
+    font-size: 1px;
+    padding-top: 10px;
+}
+
+.lineborder_reviewnone{
+    display: none;
+}
+
+
+
+.pageContents .lineborder_review {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 2px #AD1457 solid;
+    height: auto;
+    width: 100%;
+}
+
+
+.pageContents .lineborder_review {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 2px #AD1457 solid;
+    height: auto;
+    width: 100%;
+}
+
+.pageContents .lineborder_reviewbetween {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 2px #bfbfbf solid;
+    height: auto;
+    width: 100%;
+}
+
+.reviewWriting {
+    font-size: 2px;
+    color : #880E4F;
+    /*background-color: #880E4F;*/
+    border-color: #880E4F;
+    margin-left: 600px;
+    margin-bottom: 800px;
+}
+.inner_review .review_photo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.inner_review .review_photocontents {
+    width: 300px;
+    height: 250px;
+
+}
+
+.inner_review .review_contents {
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+.inner_review .reviewLike_button {
+    width: 70px;
+    height: 20px;
+    font-size: 9px;
+    margin-left: 600px;
+}
+
+/*페이징*/
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #AD1457; /*211031*/
+    border-color: #AD1457; /*211031*/
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+}
+.pagination-lg .page-item:first-child .page-link {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+    padding: 5px 5px; /*211031*/
+    font-size: 3px;
+    line-height: 1; /*211031*/
+}
+
+.pagination-sm .page-item:first-child .page-link {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 5px 5px; /*211031*/
+    margin-left: -1px;
+    line-height: 1; /*211031*/
+    color: #AD1457; /*211031*/
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #AD1457; /*211031*/
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.page-link:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+.pagination-lg .page-link {
+    padding: 5px 5px; /*211031*/
+    font-size: 3px;
+    line-height: 1; /*211031*/
+}
+
+.pagination-lg .page-item:first-child .page-link {
+    border-top-left-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+.pagination-lg .page-item:last-child .page-link {
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
+.pagination-sm .page-link {
+    padding: 5px 5px; /*211031*/
+    font-size: 3px;
+    line-height: 1;/*211031*/
+}
+
+.pagination-sm .page-item:first-child .page-link {
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.pagination-sm .page-item:last-child .page-link {
+    border-top-right-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+}
+.h-100 {
+    height: 100% !important;
+}
+.justify-content-center {
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+.align-items-center {
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}
+
+/*sort종류에 따라 다르게 하기 */
+.reviewWrap_display_regDate_none{
+    display: none;
+}
+.reviewWrap_display_goodnumber_none{
+    display: none;
+}
+.reviewWrap_display_clicknumber_none{
+    display: none;
+}
+

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>아이디 찾기</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+<link th:href="@{/css/findId.css}" rel="stylesheet" />
+
+</head>
+<script>
+    $(function () {
+
+        /**카테고리영역**/
+        $(".submenu").hide();
+
+        $(".catagory").mouseover(function () {
+            $(".submenu").slideDown();
+        });
+
+        $(".submenu").mouseleave(function () {
+            $(".submenu").hide();
+        });
+
+        /**검색영역**/
+        $(".search input").hide();
+        $(".search button").hide();
+
+        $(".searchIcon").mouseover(function () {
+            $(".search input").slideDown();
+            $(".search button").slideDown();
+        });
+
+    });
+</script>
+<body>
+<div class="modal">
+    <div class="modal_body">
+        <p>아이디</p><br>
+        <p class="findedId"></p></div>
+</div>
+<div id="sidebar">
+    <div id="menu_head">
+        <li id="head_list">
+            <div class="logo"><p> Mega market</p></div>
+            <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+            <form action="/productSearch" method="get">
+                <div class="search">
+                    <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+                    <div class="btnSearchDiv01">
+                        <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+                            <img src="/images/glasses01.png" alt="" class="glasses">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </li>
+    </div>
+    <div id = "menu_profile">
+        <li id = "profile_area">
+            <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+            <div class="nickname">
+                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+                <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+                <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+                <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+            </div>
+        </li>
+    </div>
+    <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+    <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+    <div id = "menu_area">
+
+        <ul role="menu">
+            <li class = "myPage">
+                <a href= "/myPage" style="text-decoration:none">
+                    <!-- 추가-->
+                    <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+                </a>
+            </li>
+            <li>
+                <a href= "/main" style="text-decoration:none">
+                    <img src="/images/menu1.png" width="30px" height="30px">홈
+                </a>
+            </li>
+            <li>
+                <a href= "/newProduct" style="text-decoration:none">
+                    <img src="/images/menu2.png" width="30px" height="30px">신상품
+                </a>
+            </li>
+            <li>
+                <a href= "/best" style="text-decoration:none">
+                    <img src="/images/menu3.png" width="30px" height="30px">베스트
+                </a>
+            <li>
+            <li>
+                <a href= "/event" style="text-decoration:none">
+                    <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+                </a>
+            </li>
+            <li class = "catagory" >
+                <a href= "#" style="text-decoration:none">
+                    <img src="/images/menu5.png" width="30px" height="30px">카테고리
+                </a>
+            </li>
+            <div class = "submenu">
+                <li>
+                    <a href="/goodList/vegetable" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">채소
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fruitrice" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">수산,해산
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/snackbread" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/meat" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">정육,계란
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/oilnoodle" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/drink" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">생수,음료
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/importantdish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">메인요리
+                    </a>
+                </li>
+            </div>
+            <!-- 추가-->
+
+        </ul>
+        <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+    </div>
+</div>
+<!--<body style="overflow: auto;">-->
+
+<div id="main">
+    <p class="Title">아이디 찾기</p>
+    <button th:onclick="location.href='/loginForm02'" class="goHomeButton">로그인창 이동</button>
+    <form action="#" method="post" name="userinput">
+        <p class="name">이름</p> <input type="text" class="inputName" placeholder="이름을 입력해주세요"><br>
+        <p class="email">이메일</p> <input type="text" class="inputEmail" placeholder="이메일을 입력해주세요"><br>
+        <p class="noId"></p>
+        <button type="submit" class="submit"></button>
+    </form>
+        <button class="btnfindId" type="button">아이디 찾기</button>
+</div>
+
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+<script>
+    const body = document.querySelector('body');
+    const modal = document.querySelector('.modal');
+    const btnFindId = document.querySelector('.btnfindId');
+
+    var isFind = false;
+    var findedId = "";
+
+    $(".btnfindId").click(function () {
+        $.ajax({
+            type : "GET",
+            url : "/findingId",
+            data : {
+                isFind : "isFind", // 이름같아야한다. 받을떄
+                findedId : "findedId", // 이름 찾은거
+                "name" : $('.inputName').val(),
+                "inputEmail" : $('.inputEmail').val()
+                // ,
+                // findedId : "findedId"
+            },
+            success: function (result){ // 데이터 받는 곳
+                console.log("success");
+                console.log(result);
+                isFind = result.isFind;
+                findedId = result.findedId;
+                console.log(isFind);
+                console.log(findedId);
+                if(isFind == true){
+                    $('.findedId').text(findedId);
+                }else{
+                    $('.noId').text("해당 유저는 없습니다.");
+                }
+                if(isFind == true) {
+                    modal.classList.toggle('show');
+                    console.log(modal);
+                    $('#main').css('display' , 'block');
+                    if (modal.classList.contains('show')) {
+                        $('#main').css('display' , 'none');
+                        body.style.overflow = 'hidden';
+                    }
+                }
+
+                // modal.addEventListener('click', (event) => {
+                //     if(event.target === modal){
+                //         modal.classList.toggle('show');
+                //
+                //         if(!modal.classList.contains('show')){
+                //             body.style.overflow = 'auto';
+                //         }
+                //     }
+                // });
+            },
+            error : function (error){
+                console.log("failed");
+            }
+        });
+    });
+
+    modal.addEventListener('click', (event) => {
+        if(event.target === modal){
+            modal.classList.toggle('show');
+            $('#main').css('display' , 'none');
+            if(!modal.classList.contains('show')){
+                $('#main').css('display' , 'block');
+                body.style.overflow = 'auto';
+            }
+        }
+    });
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    $('.logoutCheck').click(function () {
+
+        var googleLogin = $('.googleLogin').val();
+        var kakaoLogin =  $('.kakaoLogin').val();
+        console.log("googleLogin : " + googleLogin);
+        console.log("kakaoLogin : " + kakaoLogin);
+        if(googleLogin == "true"){
+            location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+        }
+        else if(kakaoLogin == "true"){
+            location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+        }else{
+            // location.href = "/loginForm02";
+
+            $.ajax({
+                url : '/logoutForUser',
+                type : 'get',
+                data : {
+
+                },
+                success : function (result) {
+                    console.log("로그아웃 요청 성공");
+                    console.log("result : " + result);
+                    location.href="/loginForm02?retryCheck=no";
+                },
+                error : function () {
+                    console.log("로그아웃 요청 실패");
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

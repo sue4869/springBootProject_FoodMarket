@@ -1,0 +1,106 @@
+@charset "UTF-8";
+body{
+    margin-top: 150px;
+    margin-left: 140px;
+}
+.loginform{
+    margin-left: 50px;
+}
+.loginText{
+    width: 550px;
+    font-size: 30px;
+    line-height: 0px;
+    text-align: center;
+}
+.btn01{
+    width: 270px;
+    height: 40px;
+}
+.btn02{
+    width : 255px;
+    height: 35px;
+}
+.NAVER{
+    background-color: rgb(2, 201, 2);
+    border : solid 1px rgb(2, 201, 2);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: white;
+}
+.GOOGLE{
+    background-color: rgb(136, 136, 136);
+    border: solid 1px rgb(136, 136, 136);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: white;
+}
+.KAKAO{
+    background-color: rgb(248, 248, 12);
+    border: solid 1px rgb(248,248,12);
+    margin-bottom: 12px;
+    margin-left: 115px;
+    color: black;
+}
+.BASIC{
+    background-color: black;
+    border: solid 1px black;
+    margin-bottom: 12px;
+    margin-left: 7.5px;
+    color: white;
+    margin-left: 122px;
+}
+.stick01{
+    width: 550px;
+    height: 5.5px;
+    background-color: purple;
+}
+.stick02{
+    width: 450px;
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 8px;
+}
+p{
+    display: inline-block;
+}
+.id{
+    font: solid 23px black; 
+    margin-left: 45px;
+}
+.pw{
+    font : solid 23px black;
+    margin-left: 29.5px;
+}
+.inputId{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 15px;
+    width: 270px;
+    height: 40px;
+}
+.inputId::placeholder{
+    text-align: center;
+}
+.inputPw{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 15px;
+    width: 270px;
+    height: 40px;
+}
+.inputPw::placeholder{
+    text-align: center;
+}
+.findId{
+    margin-left: 330px;
+    font : solid samller black;
+}
+.findPw{
+    font-size: 0.1em;
+}
+.findIdPwText{
+    font-size: 0.1em;
+}
+a{
+    font-size: 0.1em;
+}

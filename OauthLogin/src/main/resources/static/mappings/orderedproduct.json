@@ -1,0 +1,22 @@
+{
+  "properties" : {
+    "id": {
+      "type" : "keyword"
+    },
+    "price" : {
+      "type" : "text"
+    },
+    "goodName" : {
+      "type" : "text"
+    },
+    "image" : {
+      "type" : "text"
+    },
+    "count" : {
+      "type" : "text"
+    },
+    "regDate" : {
+      "type" : "date"
+    }
+  }
+}

@@ -1,0 +1,374 @@
+@charset "utf-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 350px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+
+/*-----------------------------------*/
+
+.stick01{
+    margin-top: -21px;
+    width: 800px;
+    height: 2px;
+    background-color: gray;
+}
+table{
+    /*border-collapse:table과 td,th의 보더 정리*/
+    /* border-collapse:collapse; */
+    width:800px;
+    border-width: 2px;
+    border: 1px solid #d8d6d6;
+    border-collapse: collapse;
+    background-color: rgb(153, 152, 152);
+    margin-top: 30px;
+}
+td{
+    border: 3px solid #d8d6d6;
+    /*display: flex;
+    align-items: center;*/
+}
+th{
+    border: 3px solid #d8d6d6;
+}
+.container{
+    display: flex;
+    align-items: center;
+}
+.img_div{
+
+}
+.img01{
+    /* float: left; */
+    /* display: inline-block; */
+
+
+    width: 50px;
+    height: 50px;
+}
+tr:nth-child(1){
+    height: 30px;
+}
+tr:nth-child(2){
+    height: 55px;
+}
+tr:nth-child(1)>th:nth-child(2){
+    width: 40px;
+}
+tr:nth-child(n+2)>td:nth-child(2){
+    text-align: center;
+    width: 40px;
+}
+tr:nth-child(1)>th:nth-child(3){
+    width: 80px;
+}
+tr:nth-child(n+2)>td:nth-child(3){
+    text-align: center;
+    width: 80px;
+}
+/* .right{
+    float: right;
+} */
+.divRight{
+    margin-left: 14px;
+}
+.right{
+    margin-left: 181px;
+    margin-top: -27px;
+}
+.radio{
+    width: 25px;
+    height: 25px;
+}
+.radioLeft{
+    margin-left: 100px;
+    margin-top: 25px;
+}
+.radioRight{
+    margin-left: 67px;
+}
+.radioText{
+    font-size: 25px;
+    margin-left: 9px;
+}
+.span01{
+    font-size: 25px;
+}
+.input01{
+    margin-top: 25px;
+    width: 354px;
+    height: 35px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 100px;
+    font-size: 23px;
+    text-align: center;
+}
+.input02{
+    margin-top: 25px;
+    width: 354px;
+    height: 35px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 75px;
+    font-size: 23px;
+    text-align: center;
+}
+.input03{
+    margin-top: 25px;
+    width: 500px;
+    height: 42px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 42px;
+    font-size: 23px;
+    text-align: center;
+}
+.input04{
+    margin-top: 25px;
+    width: 500px;
+    height: 42px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 65px;
+    font-size: 23px;
+    text-align: center;
+}
+.input031{
+    margin-top: 25px;
+    width: 500px;
+    height: 42px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 42px;
+    font-size: 23px;
+    text-align: center;
+}
+.input05{
+    margin-top: 25px;
+    width: 600px;
+    height: 35px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 67px;
+    font-size: 23px;
+    text-align: center;
+}
+.input06{
+    margin-top: 25px;
+    width: 498px;
+    height: 35px;
+    background-color: rgb(153, 152, 152);
+    border: none;
+    margin-left: 178px;
+    font-size: 23px;
+    text-align: center;
+}
+.default{
+    color: rgb(192, 192, 192);
+}
+.text01{
+    margin-top: 42px;
+    font-size: 30px;
+    margin-left: 50px;
+    font-weight: bold;
+}
+.labelFor{
+    display: block;
+    font-size: 20px;
+}
+.checkbox01{
+    width: 24px;
+    height: 24px;
+}
+.checkbox02{
+    margin-top: 20px;
+}
+.kakaoPay{
+    border: none;
+    width: 178px;
+    margin-left: 71px;
+    margin-top: 24px;
+    height: 40px;
+    font-size: 24px;
+    margin-bottom: 52px;
+}
+.pay{
+    margin-left: 260px;
+    width: 350px;
+    height: 62px;
+    font-size: 30px;
+    color: white;
+    background-color: black;
+    margin-top: 67px;
+}
+input[type='radio'],
+input[type='radio']:checked {
+     appearance: none;
+     border-radius: 100%;
+     margin-right: 0.1rem;
+ }
+
+input[type='radio'] {
+    background-color: white;
+    border: 2px solid red;
+}
+input[type='radio']:checked {
+    background-color: red;
+}

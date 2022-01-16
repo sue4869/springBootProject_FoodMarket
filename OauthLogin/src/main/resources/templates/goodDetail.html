@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>상품상세보기</title>
+    <!--<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <!--<script type="text/javascript" src="js/custom/jquery-ui.js"></script>-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="/css/goodDetail.css" rel="stylesheet">
+    <!-- 밑에 토스트창 을 위한 import -->
+    <link href="/css/toastr.css" rel="stylesheet">
+</head>
+<script>
+    $(function () {
+
+        /**카테고리영역**/
+        $(".submenu").hide();
+
+        $(".catagory").mouseover(function () {
+            $(".submenu").slideDown();
+        });
+
+        $(".submenu").mouseleave(function () {
+            $(".submenu").hide();
+        });
+
+        /**검색영역**/
+        $(".search input").hide();
+        $(".search button").hide();
+
+        $(".searchIcon").mouseover(function () {
+            $(".search input").slideDown();
+            $(".search button").slideDown();
+        });
+
+    });
+</script>
+<body>
+
+<div id="sidebar">
+    <div id="menu_head">
+        <li id="head_list">
+            <div class="logo"><p> Mega market</p></div>
+            <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+            <form action="/productSearch" method="get">
+                <div class="search">
+                    <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+                    <div class="btnSearchDiv01">
+                        <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+                            <img src="/images/glasses01.png" alt="" class="glasses">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </li>
+    </div>
+    <div id = "menu_profile">
+        <li id = "profile_area">
+            <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+            <div class="nickname">
+                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+                <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+                <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+                <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+            </div>
+        </li>
+    </div>
+    <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+    <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+    <div id = "menu_area">
+
+        <ul role="menu">
+            <li class = "myPage">
+                <a href= "/myPage" style="text-decoration:none">
+                    <!-- 추가-->
+                    <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+                </a>
+            </li>
+            <li>
+                <a href= "/main" style="text-decoration:none">
+                    <img src="/images/menu1.png" width="30px" height="30px">홈
+                </a>
+            </li>
+            <li>
+                <a href= "/newProduct" style="text-decoration:none">
+                    <img src="/images/menu2.png" width="30px" height="30px">신상품
+                </a>
+            </li>
+            <li>
+                <a href= "/best" style="text-decoration:none">
+                    <img src="/images/menu3.png" width="30px" height="30px">베스트
+                </a>
+            <li>
+            <li>
+                <a href= "/event" style="text-decoration:none">
+                    <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+                </a>
+            </li>
+            <li class = "catagory" >
+                <a href= "#" style="text-decoration:none">
+                    <img src="/images/menu5.png" width="30px" height="30px">카테고리
+                </a>
+            </li>
+            <div class = "submenu">
+                <li>
+                    <a href="/goodList/vegetable" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">채소
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fruitrice" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">수산,해산
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/snackbread" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/meat" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">정육,계란
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/oilnoodle" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/drink" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">생수,음료
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/importantdish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">메인요리
+                    </a>
+                </li>
+            </div>
+            <!-- 추가-->
+
+        </ul>
+        <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+    </div>
+</div>
+<form action="/paymentPage02" id="payForm" method="post" name="myForm">
+<div id = "main">
+    <div class = "pageContents"  th:each="good : ${goodInfo}" >
+        <ul class="goodDetail" th:id="${good.getId()}">
+            <div><img class = "goodImg" th:src="@{${good.getImage}}"></div>
+            <div class = "goodInformation">
+                <li  class = "goodname" th:text="${good.getGoodName()}"></li>
+                <table class = "goodTable" >
+                    <tbody>
+                    <tr>
+                        <td class = "tabletitle">중량/용량</td>
+                        <td class = "tablecontents" th:text="${good.getWeight()}" ></td>
+                    </tr>
+                    <tr>
+                        <td class = "tabletitle" >원산지</td>
+                        <td class = "tablecontents" th:text="${good.getOrigin()}" ></td>
+                    </tr>
+                    <tr>
+                        <td class = "tabletitle" >유통기한</td>
+                        <td class = "tablecontents" th:text="${good.getExpiration()}" ></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class = "lineborder"></div>
+                <li class="checkamount">
+                    <div class = "counttitle">구매 수량</div>
+                    <button class = "minusbutton" type = button>-</button>
+                    <input class="numberarea" min="1" max="${good.getAmount()}" value="1" readonly="readonly" style="text-align: center" name="count">
+                    <button class = "addbutton" type = button>+</button>
+                    <input type="hidden" class="totalamount" th:value = "${good.getAmount()}">
+
+                </li>
+                <div class = "lineborder"></div>
+                <li class ="checkprice">
+                    <div class = "pricetitle">총 상품 금액:</div>
+                    <div class = pricezone>
+                        <div class = "goodPrice" th:value="${good.getPrice}" th:text="${good.getPrice}"></div>
+                        <div class = "won"> 원 </div>
+                    </div>
+                </li>
+                <li class = "buyproduct">
+                    <div><button class = "goorder" type="submit">결제하기</button></div>
+                    <div><button class = "gobasket" type="button">장바구니</button></div>
+                    <input type="hidden" th:value="${goodId}" class="goodIdForAjax">
+                    <input type="hidden" th:value="${userId}" class="userIdForAjax">
+                </li>
+            </div>
+        </ul>
+        <div class = "relatedgoods">
+            <div class = "lineborder"></div>
+            <ul class = "goodview">
+                <li class = "goods-view-infomation-tab" >
+                    <a href = #good_inforamtion  class = "goods-view-infomation-tab-anchor "> 상품설명</a>
+                </li>
+                <li class = "goods-view-infomation-tab" >
+                    <a href = #good_detailInfo class = "goods-view-infomation-tab-anchor" > 상세정보</a>
+                </li>
+                <li class = "goods-view-infomation-tab" >
+                    <a href = #good_review class = "goods-view-infomation-tab-anchor" > 후기</a>
+                </li>
+            </ul>
+            <div class = "goodview_information" id = "good_inforamtion"></div>
+            <div class = goodview_information_img>
+                <img class = "goodview_first_img" th:src="@{${good.getDetailimagefirst}}">
+            </div>
+            <div>
+                <div class = "context">
+                    <h3 class ="contexmainword" th:text="${good.getGoodName()}"></h3>
+                    <p class = "contextword" th:text="${good.getDetailcontext()}"></p>
+                </div>
+            </div>
+            <div class = "lineborder"></div>
+
+            <div class = "goodview_information" id = "good_detailInfo">
+                <div class = "goodview_second_divimg">
+                    <img class = "goodview_second_img" th:src="@{${good.getDetailimagesecond}}">
+                </div>
+
+            </div>
+
+
+            <div class = "goodview_information" id = "good_review">
+                <div class="reviewtitle">
+                    <div class="titleletter">
+                        <p class="bigreviewtitle">PRODUCT REVIEW</p>
+                        <oi class = "reviewalarm">
+                            <oi>
+                                <p class = "txt">상품에 대한 후기를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</p>
+                            </oi>
+                            <div class = "sort">
+                                <!-- 선택한 option이 select의 value가 된다.-->
+                                <select class = "sortcontents">
+                                    <option value="1">최근등록순</option>
+                                    <option value="2">좋아요많은순 </option>
+                                    <option value="3">조회많은순</option>
+                                </select>
+                            </div>
+                        </oi>
+                    </div>
+                </div>
+                <div class = "lineborder_review"></div>
+                <table class="reviewtable" >
+                    <caption style="display: none">리뷰테이블 컬럼</caption>
+                    <colgroup>
+                        <col style="width: 10px";>
+                        <col style="width: 50px";>
+                        <col style="width: 10px";>
+                        <col style="width: 10px";>
+                        <col style="width: 10px";>
+                        <col style="width: 10px";>
+                    </colgroup>
+                    <tbody>
+                    <tr class="reviewtable_column">
+                        <th scope="col" class = review_txt>번호</th>
+                        <th scope="col" class = review_txt>제목</th>
+                        <th scope="col" class = review_txt>작성자</th>
+                        <th scope="col" class = review_txt>작성일</th>
+                        <th scope="col" class = review_txt>좋아요</th>
+                        <th scope="col" class = review_txt>조회</th>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div class = "reviewWrap_display_regDate">
+                    <div class="reviewtable_contentsWrap">
+                        <div class="reviewtable_contents" th:each="review : ${result.dtoList}">
+                            <div class = "lineborder_reviewbetween"></div>
+                            <table class="reviewtable_usercontent"  value="true" th:id="reviewtable+${review.getReviewId()}">
+                                <caption style="display: none">리뷰테이블 내용</caption>
+                                <colgroup>
+                                    <col style="width: 17px";>
+                                    <col style="width: 69px";>
+                                    <col style="width: 16px";>
+                                    <col style="width: 1px";>
+                                    <col style="width: 5px";>
+                                    <col style="width: 5px";>
+                                </colgroup>
+                                <tbody>
+                                <tr class="users_review">
+                                    <th scope="col" class = review_id th:text="${review.getReviewId()}"></th>
+                                    <th scope="col" class = review_title th:text="${review.getReviewTitle()}"></th>
+                                    <th scope="col" class = review_writer>작성자</th>
+                                    <th scope="col" class = review_date th:text="${review.getRegisterDate()}"></th>
+                                    <th scope="col" class = review_goodnumber th:text="${review.getReviewGoodnumber()}" th:id="reviewGoodNumber+${review.getReviewId()}"></th>
+                                    <th scope="col" class = review_clicknumber th:id = "reviewclicknumber+${review.getReviewId()}" th:text="${review.getClicknumber()}"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class = "inner_review" th:id="innerreview+${review.getReviewId()}" >
+                                <div class="review_photo">
+                                    <img class = "review_photocontents" th:src="@{/display(fileName=${review.getReviewImage()} , size = 1)}">
+                                </div>
+                                <div class="review_contents" th:text="${review.getReviewContents()}"></div>
+                                <button type="button" class="reviewLike_button" th:id="reviewHelp+${review.getReviewId()}">도움이 돼요</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviewtable_pageWrap">
+                        <div class = "lineborder_review"></div>
+                        <ul class="pagination h-100 justify-content-center align-items-center ulcenter">
+                            <li  class="page-item" th:if="${result.prev}">
+                                <a class="page-link" th:href="@{/goodDetail/{sort}/{goodId}#good_review(sort=${sort}, goodId=${goodId} ,page = ${result.start-1})}">이전</a>
+                            </li>
+                            <li th:id="'resultbyregdate'+${page}" th:class=" 'page-item' + ${result.page == page?' active':''} " th:each="page : ${result.pageList}">
+                                <a class="page-link" th:href="@{/goodDetail/{sort}/{goodId}#good_review(sort=${sort}, goodId=${goodId} ,page = ${page})}">[[${page}]]</a>
+                            </li>
+                            <li class="page-item" th:if="${result.next}">
+                                <a class="page-link" th:href="@{/goodDetail/{sort}/{goodId}#good_review(sort=${sort}, goodId=${goodId} ,page = ${result.end+1})}">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+               <!-- <div class = "reviewWrap_display_goodnumber_none">
+                    <div class="reviewtable_contentsWrap">
+                        <div class="reviewtable_contents" th:each="review : ${resultbygoodnumber.dtoList}">
+                            <div class = "lineborder_reviewbetween"></div>
+                            <table class="reviewtable_usercontent"  value="true" th:id="reviewtable+${review.getReviewId()}">
+                                <caption style="display: none">리뷰테이블 내용</caption>
+                                <colgroup>
+                                    <col style="width: 17px";>
+                                    <col style="width: 69px";>
+                                    <col style="width: 16px";>
+                                    <col style="width: 1px";>
+                                    <col style="width: 5px";>
+                                    <col style="width: 5px";>
+                                </colgroup>
+                                <tbody>
+                                <tr class="users_review">
+                                    <th scope="col" class = review_id th:text="${review.getReviewId()}"></th>
+                                    <th scope="col" class = review_title th:text="${review.getReviewTitle()}"></th>
+                                    <th scope="col" class = review_writer>작성자</th>
+                                    <th scope="col" class = review_date th:text="${review.getRegisterDate()}"></th>
+                                    <th scope="col" class = review_goodnumber th:text="${review.getReviewGoodnumber()}" ></th>
+                                    <th scope="col" class = review_clicknumber th:id = "reviewclicknumber+${review.getReviewId()}" th:text="${review.getClicknumber()}"></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class = "inner_review" th:id="innerreview+${review.getReviewId()}" >
+                                <div class="review_photo">
+                                    <img class = "review_photocontents" th:src="@{${review.getReviewImage()}}">
+                                </div>
+                                <div class="review_contents" th:text="${review.getReviewContents()}"></div>
+                                <button type="button" class="reviewLike_button">도움이 돼요</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviewtable_pageWrap">
+                        <div class = "lineborder_review"></div>
+                        <ul class="pagination h-100 justify-content-center align-items-center ulcenter">
+                            <li  class="page-item" th:if="${resultbygoodnumber.prev}">
+                                <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${resultbygoodnumber.start-1})}">이전</a>
+                            </li>
+                            <li th:id="'resultbygoodnumber'+${page}" th:class=" 'page-item' + ${resultbygoodnumber.page == page?' active':''} " th:each="page : ${resultbygoodnumber.pageList}">
+                                <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${page})}">[[${page}]]</a>
+                            </li>
+                            <li class="page-item" th:if="${resultbygoodnumber.next}">
+                                <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${resultbygoodnumber.end+1})}">다음</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+<!--                    <div class = "reviewWrap_display_goodnumber_none">-->
+<!--                        <div class="reviewtable_contentsWrap">-->
+<!--                            <div class="reviewtable_contents" th:each="review : ${resultbygoodnumber.dtoList}">-->
+<!--                                <div class = "lineborder_reviewbetween"></div>-->
+<!--                                <table class="reviewtable_usercontent"  value="true" th:id="reviewtable+${review.getReviewId()}">-->
+<!--                                    <caption style="display: none">리뷰테이블 내용</caption>-->
+<!--                                    <colgroup>-->
+<!--                                        <col style="width: 17px";>-->
+<!--                                        <col style="width: 69px";>-->
+<!--                                        <col style="width: 16px";>-->
+<!--                                        <col style="width: 1px";>-->
+<!--                                        <col style="width: 5px";>-->
+<!--                                        <col style="width: 5px";>-->
+<!--                                    </colgroup>-->
+<!--                                    <tbody>-->
+<!--                                    <tr class="users_review">-->
+<!--                                        <th scope="col" class = review_id th:text="${review.getReviewId()}"></th>-->
+<!--                                        <th scope="col" class = review_title th:text="${review.getReviewTitle()}"></th>-->
+<!--                                        <th scope="col" class = review_writer>작성자</th>-->
+<!--                                        <th scope="col" class = review_date th:text="${review.getRegisterDate()}"></th>-->
+<!--                                        <th scope="col" class = review_goodnumber th:text="${review.getReviewGoodnumber()}" ></th>-->
+<!--                                        <th scope="col" class = review_clicknumber th:id = "reviewclicknumber+${review.getReviewId()}" th:text="${review.getClicknumber()}"></th>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                <div class = "inner_review" th:id="innerreview+${review.getReviewId()}" >-->
+<!--                                    <div class="review_photo">-->
+<!--                                        <img class = "review_photocontents" th:src="@{${review.getReviewImage()}}">-->
+<!--                                    </div>-->
+<!--                                    <div class="review_contents" th:text="${review.getReviewContents()}"></div>-->
+<!--                                    <button type="button" class="reviewLike_button">도움이 돼요</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviewtable_pageWrap">-->
+<!--                            <div class = "lineborder_review"></div>-->
+<!--                            <ul class="pagination h-100 justify-content-center align-items-center ulcenter">-->
+<!--                                <li  class="page-item" th:if="${resultbygoodnumber.prev}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${resultbygoodnumber.start-1})}">이전</a>-->
+<!--                                </li>-->
+<!--                                <li th:id="'resultbygoodnumber'+${page}" th:class=" 'page-item' + ${resultbygoodnumber.page == page?' active':''} " th:each="page : ${resultbygoodnumber.pageList}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${page})}">[[${page}]]</a>-->
+<!--                                </li>-->
+<!--                                <li class="page-item" th:if="${resultbygoodnumber.next}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/2/{goodId}#good_review(goodId=${goodId} ,page = ${resultbygoodnumber.end+1})}">다음</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class = "reviewWrap_display_clicknumber_none">-->
+<!--                        <div class="reviewtable_contentsWrap">-->
+<!--                            <div class="reviewtable_contents" th:each="review : ${resultbyclicknumber.dtoList}">-->
+<!--                                <div class = "lineborder_reviewbetween"></div>-->
+<!--                                <table class="reviewtable_usercontent"  value="true" th:id="reviewtable+${review.getReviewId()}">-->
+<!--                                    <caption style="display: none">리뷰테이블 내용</caption>-->
+<!--                                    <colgroup>-->
+<!--                                        <col style="width: 17px";>-->
+<!--                                        <col style="width: 69px";>-->
+<!--                                        <col style="width: 16px";>-->
+<!--                                        <col style="width: 1px";>-->
+<!--                                        <col style="width: 5px";>-->
+<!--                                        <col style="width: 5px";>-->
+<!--                                    </colgroup>-->
+<!--                                    <tbody>-->
+<!--                                    <tr class="users_review">-->
+<!--                                        <th scope="col" class = review_id th:text="${review.getReviewId()}"></th>-->
+<!--                                        <th scope="col" class = review_title th:text="${review.getReviewTitle()}"></th>-->
+<!--                                        <th scope="col" class = review_writer>작성자</th>-->
+<!--                                        <th scope="col" class = review_date th:text="${review.getRegisterDate()}"></th>-->
+<!--                                        <th scope="col" class = review_goodnumber th:text="${review.getReviewGoodnumber()}" ></th>-->
+<!--                                        <th scope="col" class = review_clicknumber th:id = "reviewclicknumber+${review.getReviewId()}" th:text="${review.getClicknumber()}"></th>-->
+<!--                                    </tr>-->
+<!--                                    </tbody>-->
+<!--                                </table>-->
+<!--                                <div class = "inner_review" th:id="innerreview+${review.getReviewId()}" >-->
+<!--                                    <div class="review_photo">-->
+<!--                                        <img class = "review_photocontents" th:src="@{${review.getReviewImage()}}">-->
+<!--                                    </div>-->
+<!--                                    <div class="review_contents" th:text="${review.getReviewContents()}"></div>-->
+<!--                                    <button type="button" class="reviewLike_button">도움이 돼요</button>-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="reviewtable_pageWrap">-->
+<!--                            <div class = "lineborder_review"></div>-->
+<!--                            <ul class="pagination h-100 justify-content-center align-items-center ulcenter">-->
+<!--                                <li  class="page-item" th:if="${resultbyclicknumber.prev}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/3/{goodId}#good_review(goodId=${goodId} ,page = ${resultbyclicknumber.start-1})}">이전</a>-->
+<!--                                </li>-->
+<!--                                <li th:id="'resultbyclicknumber'+${page}" th:class=" 'page-item' + ${resultbyclicknumber.page == page?' active':''} " th:each="page : ${resultbyclicknumber.pageList}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/3/{goodId}#good_review(goodId=${goodId} ,page = ${page})}">[[${page}]]</a>-->
+<!--                                </li>-->
+<!--                                <li class="page-item" th:if="${resultbyclicknumber.next}">-->
+<!--                                    <a class="page-link" th:href="@{/goodDetail/3/{goodId}#good_review(goodId=${goodId} ,page = ${resultbyclicknumber.end+1})}">다음</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                <input type="button" class="reviewWriting" value="후기쓰기">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<th:block th:each="good : ${goodInfo}">
+    <input type="hidden" th:value="${good.id}" name="productIdForSend">
+    <input type="hidden" th:value="${good.goodName}" name="goodName">
+    <input type="hidden" th:value="${good.image}" name="images">
+    <input type="hidden" th:value="${good.price}" name="price">
+    <input type="hidden" th:value="${good.detailcontext}" name="detailContext">
+<!--    <input type="hidden" th:value="${good.count}" name="productIdForSend">-->
+
+</th:block>
+</form>
+
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+
+<div id="dialog-message" title="선택하세요." style='display:none;'>
+    장바구니에 담기 위해선 로그인이필요합니다. 로그인창으로 이동하시겠습니까?
+</div>
+<div id="dialog-message02" title="선택하세요." style='display:none;'>
+    결제하기 위해선 로그인이필요합니다.<br>로그인창으로 이동하시겠습니까?
+</div>
+<div id="dialog-message03" title="선택하세요." style='display:none;'>
+    결제 페이지로 이동하시겠습니까?
+</div>
+<div id="dialog-message04" title="선택하세요." style='display:none;'>
+    리뷰를 쓰기 위해선 로그인이필요합니다. 로그인창으로 이동하시겠습니까?
+</div>
+<div id="dialog-message05" title="선택하세요." style='display:none;'>
+    정말 리뷰를 작성하실건가요?
+</div>
+<div id="dialog-message06" title="선택하세요." style='display:none;'>
+    로그인이 필요합니다. 로그인창으로 이동하시겠습니까?
+</div>
+<script type="text/javascript" src="/js/goodDetail.js"></script>
+<!-- 밑에 토스트창 을 위한 import -->
+<script type="text/javascript" src="/js/toastr.js"></script>
+<script type="text/javascript" src="/js/custom/jquery-ui.js"></script>
+<script>
+    ///////////////////////////////////////////////////////////////////////
+
+    $('.logoutCheck').click(function () {
+
+        var googleLogin = $('.googleLogin').val();
+        var kakaoLogin =  $('.kakaoLogin').val();
+        console.log("googleLogin : " + googleLogin);
+        console.log("kakaoLogin : " + kakaoLogin);
+        if(googleLogin == "true"){
+            location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/loginForm02";
+        }
+        else if(kakaoLogin == "true"){
+            location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/loginForm02";
+        }else{
+            // location.href = "/loginForm02";
+
+            $.ajax({
+                url : '/logoutForUser',
+                type : 'get',
+                data : {
+
+                },
+                success : function (result) {
+                    console.log("로그아웃 요청 성공");
+                    console.log("result : " + result);
+                    location.href="/loginForm02?retryCheck=no";
+                },
+                error : function () {
+                    console.log("로그아웃 요청 실패");
+                }
+            });
+        }
+    });
+
+
+</script>
+</body>
+</html>

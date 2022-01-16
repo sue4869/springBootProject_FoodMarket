@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>행사목록</title>
+  <link href="/css/eventList2.css" rel="stylesheet"> <!--link : 웹페이지에 다른 파일 추가시키기-->
+  <script>
+
+    $(document).ready(function(){
+
+
+      /**카테고리영역**/
+      $(".submenu").hide();
+
+      $(".catagory").mouseover(function () {
+        $(".submenu").slideDown();
+      });
+
+      $(".submenu").mouseleave(function () {
+        $(".submenu").hide();
+      });
+
+      /**검색영역**/
+      $(".search input").hide();
+      $(".search button").hide();
+
+      $(".searchIcon").mouseover(function () {
+        $(".search input").slideDown();
+        $(".search button").slideDown();
+      });
+
+
+      // 로그인창으로 가기
+      $("#unlogined").on('click' , function () {
+        console.log("로그인 누름!");
+        location.href='/loginForm02';
+      });
+
+    });
+
+    // $(".catagory").mouseenter(function (){
+    //   $(this).children(".sub_menu").stop().slideDown()
+    //
+    // })
+    //
+    // $(".catagory").mouseenter(function (){
+    //   $(this).children(".sub_menu").stop().slideUp()
+    //
+    // })
+
+
+
+  </script>
+</head>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+  <div id = "main">
+    <div class = "pageTitle">
+      <h1 class = "tit">오늘의 행사</h1>
+    </div>
+    <div class = "pageContents">
+      <form action="#" method="post" class="eventList">
+
+        <!-- th:each 에서 보면 HomeController 에서 eventForm 메서드에 보면
+              model.addAttribute("imageList", eventList): 에서 imageList 를
+              event.html 에 쏘아줍니다.
+              이제 imageList 를 thymeleaf th:each 로 받아서 반복문을 시행하게 합니다
+
+              밑에서는 ${imageList} 로 model.addAttribute 로 쏜값을 받고
+              그값을 img 로 쓰겠다.
+              이제 img.getImage() get 메서드를 호출해서 images/imageList1,2,3,4.jpg 를 각각불러온다
+              코드양을 줄인다. th:each 를 씀으로써
+         -->
+        <ul class="list" th:each="event : ${eventList}">
+          <oi>
+            <a th:href= "@{/goodListForevent1/{id}(id = ${event.getId()})}"> <!--컨트롤러에서 반드시 매핑해줘야한다.-->
+              <img th:src="@{${event.getImage()}}" alt="행사4" width="900">
+            </a>
+          </oi>
+        </ul>
+      </form>
+    </div>
+  </div>
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+<script>
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02?retryCheck=no";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+</body>
+</html>

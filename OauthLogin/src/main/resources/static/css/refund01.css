@@ -1,0 +1,284 @@
+@charset "utf-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 350px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+
+/*-----------------------------------*/
+.sub{
+    font-size: 25px;
+    color: gray;
+}
+.title{
+    font-size: 30px;
+    font-weight: bold;
+}
+.span01{
+    font-size: 22px;
+    line-height: 70px;
+    margin-left: 7px;
+}
+.div01{
+    padding-top: 30px;
+    padding-bottom: 50px;
+    border: 1px solid black;
+    width: 500px;
+    height: 130px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+
+}
+.select01{
+    font-size: 15px;
+    width: 230px;
+    height: 36px;
+    border: 1px solid blue;
+    margin-left: 50px;
+}
+.div02{
+    border: 1px solid black;
+    width: 500px;
+    height: 130px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding-top: 10px;
+}
+.radio01{
+    margin-left: 235px;
+    width: 24px;
+    height: 18px;
+}
+.radioText{
+    font-size: 20px;
+    line-height: 40px;
+}
+.span02{
+    font-size: 23px;
+    margin-left: 5px;
+}
+.other{
+    margin-top : 1px
+}
+.div03{
+    border: 1px solid black;
+    width: 500px;
+    height: 44px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding-top: 10px;
+}
+.price{
+    background-color: white;
+    border: none;
+    width: 44px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 209px;
+}
+.div03span01{
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 55px;
+}
+.div03span02{
+    font-size: 22px;
+    font-weight: bold;
+}
+.div04{
+    border: 1px solid black;
+    width: 500px;
+    height: 120px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    padding-top: 10px;
+}
+.div04span01{
+    font-size: 22px;
+    margin-left: 26px;
+}
+.div04button01{
+    background-color: #ffeb3b;
+    color: black;
+    border: none;
+    margin-left: 163px;
+    height: 38px;
+    width: 144px;
+    font-weight: bold;
+    font-size: 22px;
+}
+.div04button02{
+    margin-left: 177px;
+    background-color: black;
+    color: white;
+    width: 130px;
+    height: 35px;
+    font-size: 20px;
+    border: none;
+    margin-top: 39px;
+}
+.nextBtn{
+    margin-left: 177px;
+    background-color: black;
+    color: white;
+    width: 130px;
+    height: 35px;
+    font-size: 20px;
+    border: none;
+}

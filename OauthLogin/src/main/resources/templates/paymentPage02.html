@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+  <!-- 상세주소 자바스크립트 import -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/css/paymentPage.css">
+  <title>Document</title>
+</head>
+<script>
+  $(function () {
+
+    /**카테고리영역**/
+    $(".submenu").hide();
+
+    $(".catagory").mouseover(function () {
+      $(".submenu").slideDown();
+    });
+
+    $(".submenu").mouseleave(function () {
+      $(".submenu").hide();
+    });
+
+    /**검색영역**/
+    $(".search input").hide();
+    $(".search button").hide();
+
+    $(".searchIcon").mouseover(function () {
+      $(".search input").slideDown();
+      $(".search button").slideDown();
+    });
+
+  });
+</script>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+<div id="main">
+<p class="text01">결제</p>
+<div class="stick01"></div>
+<span class="span01">배송지</span>
+<input type="radio" name="Address" value="0" checked class="radio radioLeft"><label for="r1"><span class="radioText">집</span></label>
+<input type="radio" name="Address" value="1" class="radio radioRight"><label for="r2"><span class="radioText">신규 배송지</span></label><br>
+<span class="span01">수령인</span> <input type="text" th:value="${userName}"  class="input01" id="inputNameForm" readonly ><br>
+<span class="span01">전화번호</span> <input type="text" th:value="${userPhone}" class="input02" id="inputPhoneForm" readonly><br>
+<span class="span01">배송지 주소</span> <input type="text" th:value="${userBigAddress}" class="input03" id="inputAddressForm" readonly><br>
+<span class="span01">상세 주소</span> <input type="text" th:value="${userDetailAddress}" class="input05" id="inputDetailAddressFrom" readonly><br>
+<span class="span01">배송 메모</span>
+<select name='deliveryText' class="input04" id="deliverySelect">
+  <option value='default' selected>  -- 배송시 요청사항을 입력해주세요 -- </option>
+  <option value='1' id="request1">경비실에 맡겨주세요.</option>
+  <option value='2' id="request2">집문앞에 놔주세요.</option>
+  <option value='3' id="request3">직접 수령하겠습니다.</option>
+  <option value="4" id="request4">요청사항 직접입력하기</option>
+</select><br>
+<input type="hidden" class="input06" id="requestInput" value="" placeholder="요청사항을 입력해주세요.">
+
+<p class="text01">상품정보</p>
+<div class="stick01"></div>
+
+<table>
+  <tr>
+    <th>상품정보</th>
+    <th>개수</th>
+    <th>가격</th>
+  </tr>
+  <tr th:each="basket : ${basketDTOList}">
+    <td>
+      <div th:class="container">
+        <div th:class="img_div">
+          <img th:src="@{${basket.image}}" alt="">
+        </div>
+        <div th:class="divRight">
+          <span th:text="${basket.goodName}">상품 이름</span><br>
+          <span th:text="${basket.getDetailcontext()}">선택한 옵션 or 상품 정보</span>
+        </div>
+      </div>
+    </td>
+    <td>
+      <p th:text="${basket.count}">1</p>
+    </td>
+    <td th:text="${basket.price}">
+      39000
+    </td>
+    <input type="hidden" th:value="${basket.productId}" name="productIdForSend" th:id="productIdForSearch+${basket.productId}">
+    <input type="hidden" th:value="${basket.goodName}" name="goodName" th:id="goodNameForSend+${basket.productId}" >
+    <input type="hidden" th:value="${basket.image}" name="images" th:id="imageForSend+${basket.productId}">
+    <input type="hidden" th:value="${basket.price}" name="price" th:id="priceForSend+${basket.productId}">
+    <input type="hidden" th:value="${basket.count}" name="count" th:id="countForSend+${basket.productId}">
+    <input type="hidden" th:value="${basket.regDate}" name="regDate" th:id="regDateForSend+${basket.productId}">
+    <input type="hidden" th:value="${basket.detailcontext}" name="detailContext" th:id="detailContextForSend+${basket.productId}">
+  </tr>
+</table>
+<p class="text01">결제 정보</p>
+<div class="stick01"></div>
+<span class="span01">결제 수단</span> <button type="button" class="kakaoPay">카카오 페이</button><br>
+<span class="span01">주문자 동의</span>
+<div class="right">
+  <label for="agree_all" class="labelFirst labelFor">
+    <input type="checkbox" name="agree_all" id="agree_all" class="checkbox01">
+    <span>모두 동의합니다</span>
+  </label>
+  <label for="agree" class="notAll labelFor">
+    <input type="checkbox" name="agree" value="1" class="checkbox01 checkbox02">
+    <span>개인정보 자 3자 정보 동의<strong> (필수)</strong></span>
+  </label>
+  <label for="agree" class="notAll labelFor">
+    <input type="checkbox" name="agree" value="2" class="checkbox01 checkbox02">
+    <span>위의 상품 결제 동의<strong> (필수)</strong></span>
+  </label>
+</div>
+<button type="button" class="pay">
+  <span th:text="${paySum}" class="payAmount">39000</span><span>원 결제</span>
+</button>
+</div>
+<input type="hidden" th:value="${userName}" class="getNameFromModel">
+<input type="hidden" th:value="${userPhone}" class="getPhoneFromModel">
+<input type="hidden" th:value="${userBigAddress}" class="getBigAddressFromModel">
+<input type="hidden" th:value="${userDetailAddress}" class="getDetailAddressFromModel">
+<input type="hidden" th:value="${userId}" class="userIdForSend">
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+<div id="dialog-message" title="선택하세요." style='display:none'>
+  결제를 계속 진행하시겠습니까?
+</div>
+<script type="text/javascript" src="/js/paymentPage.js"></script>
+<script>
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02?retryCheck=no";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>로그인 (Please sign in)</title>
+  <style>
+    body{
+      margin-top: 150px;
+      margin-left: 140px;
+    }
+    .loginform{
+      margin-left: 50px;
+    }
+    .loginText{
+      width: 550px;
+      font-size: 30px;
+      line-height: 0px;
+      text-align: center;
+    }
+    .btn01{
+      width: 270px;
+      height: 40px;
+    }
+    .btn02{
+      width : 255px;
+      height: 35px;
+    }
+    .NAVER{
+      background-color: rgb(2, 201, 2);
+      border : solid 1px rgb(2, 201, 2);
+      margin-bottom: 12px;
+      margin-left: 115px;
+      color: white;
+    }
+    .GOOGLE{
+      background-color: rgb(136, 136, 136);
+      border: solid 1px rgb(136, 136, 136);
+      margin-bottom: 12px;
+      margin-left: 115px;
+      color: white;
+    }
+    .KAKAO{
+      background-color: rgb(248, 248, 12);
+      border: solid 1px rgb(248,248,12);
+      margin-bottom: 12px;
+      margin-left: 115px;
+      color: black;
+    }
+    .BASIC{
+      background-color: black;
+      border: solid 1px black;
+      margin-bottom: 12px;
+      margin-left: 7.5px;
+      color: white;
+      margin-left: 122px;
+    }
+    .stick01{
+      width: 550px;
+      height: 5.5px;
+      background-color: purple;
+    }
+    .stick02{
+      width: 450px;
+      height: 1px;
+      background-color: gray;
+      margin-bottom: 8px;
+    }
+    p{
+      display: inline-block;
+    }
+    .id{
+      font: solid 23px black;
+      margin-left: 45px;
+    }
+    .pw{
+      font : solid 23px black;
+      margin-left: 29.5px;
+    }
+    .inputId{
+      background-color: rgb(221, 221, 221);
+      border : solid 1px rgb(221,221,221);
+      margin-left: 15px;
+      width: 270px;
+      height: 40px;
+    }
+    .inputId::placeholder{
+      text-align: center;
+    }
+    .inputPw{
+      background-color: rgb(221, 221, 221);
+      border : solid 1px rgb(221,221,221);
+      margin-left: 15px;
+      width: 270px;
+      height: 40px;
+    }
+    .inputPw::placeholder{
+      text-align: center;
+    }
+    .findId{
+      margin-left: 330px;
+      font : solid samller black;
+    }
+    .findPw{
+      font-size: 0.1em;
+    }
+    .findIdPwText{
+      font-size: 0.1em;
+    }
+    a{
+      font-size: 0.1em;
+    }
+  </style>
+</head>
+<body>
+<p class="loginText">로그인</p>
+<div class="stick01"></div>
+<form action="#" method="POST" class="loginform">
+  <p class="id">아이디</p> <input type="text" class="inputId" placeholder="아이디를 입력해주세요"> <br>
+  <p class="pw">비밀번호</p> <input type="text" class="inputPw" placeholder="비밀번호를 입력해주세요"><br>
+  <a th:href="@{/findId}"><p class="findId">ID 찾기</p></a> <p class="findIdPwText">/</p> <a href="#"><p class="findPw">비밀번호 찾기</p></a><br>
+  <div class="stick02"></div>
+
+  <button type="button" class="all btn01 NAVER" th:onclick="'location.href=\''+ @{${Nurls}} + '\''">NAVER 로그인</button><br>
+  <button type="button" class="all btn01 GOOGLE" th:onclick="'location.href=\''+ @{${Gurls}} + '\''">GOOGLE 로그인</button><br>
+  <button type="button" class="all btn01 KAKAO" th:onclick="'location.href=\''+ @{${Kurls}}+ '\''">KAKAO 로그인</button><br>
+  <button type="button" class="all btn02 BASIC">로그인</button><br>
+  <button type="button" class="all btn02 BASIC">회원가입</button><br>
+  </form>
+<div id="naverIdLogin"></div>
+<div id="naverIdLogin" style="display:none;">
+
+</div>
+<!-- 아래 커스텀 버튼 동작을 위해 필요.-->
+<div class="social-login">
+  <a href="#no" title="네이버ID로 로그인" class="naver-login" id="naverLogin"><i class="xi-naver">
+
+  </i>네이버ID로 로그인</a> <!-- 커스텀 버튼--> </div>
+
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script type="text/javascript">
+  var naverLogin = new naver.LoginWithNaverId( {
+    clientId: "클라이언트 id",
+    callbackUrl: "콜백URL",
+    isPopup: false, /* 팝업을 통한 연동처리 여부 */
+    loginButton: {color: "green", type: 3, height: 62} /* 로그인 버튼의 타입을 지정 */ } );
+  /* 설정정보를 초기화하고 연동을 준비 */
+  naverLogin.init();
+
+  $(document).on("click", "#naverLogin", function(){
+    var naverLogin = document.getElementById("naverIdLogin").firstChild;
+    naverLogin.click();
+  });
+
+</script>
+
+</body>
+</html>

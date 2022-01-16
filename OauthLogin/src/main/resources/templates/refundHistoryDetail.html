@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/cancelHistoryDetail.css">
+  <title>Document</title>
+</head>
+<script>
+  $(function () {
+
+    /**카테고리영역**/
+    $(".submenu").hide();
+
+    $(".catagory").mouseover(function () {
+      $(".submenu").slideDown();
+    });
+
+    $(".submenu").mouseleave(function () {
+      $(".submenu").hide();
+    });
+
+    /**검색영역**/
+    $(".search input").hide();
+    $(".search button").hide();
+
+    $(".searchIcon").mouseover(function () {
+      $(".search input").slideDown();
+      $(".search button").slideDown();
+    });
+
+  });
+</script>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+<div id="main">
+<span class="span01">환불내역 상세</span><br>
+<span class="span02">주문일 : </span><span class="span02" th:text="${#temporals.format(orderDate , 'yyyy-MM-dd HH:mm')}">2020/6/25</span><span class="span02"> | </span><span class="span02">주문번호 : </span><span class="span02" th:text="${sendNum}">1202314865132</span>
+<table class="table01">
+  <tr>
+    <th>
+      <span>상품</span>
+    </th>
+    <th>
+      <span>가격</span>
+    </th>
+    <th>
+      <span>진행상태</span>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <span th:text="${goodName}">아이폰 실리콘 케이스</span>
+    </td>
+    <td>
+      <span th:text="${count}">2</span>개<br>
+      <span th:text="${price}">12000</span>원
+    </td>
+    <td>
+      <span>환불완료</span>
+    </td>
+  </tr>
+</table>
+
+<span class="span03">상세정보</span>
+<table class="table02">
+  <tr>
+    <td>
+      <span>환불접수일자</span>
+    </td>
+    <td>
+      <span th:text="${#temporals.format(cancelDate,'yyyy-MM-dd HH:mm')}">2020/6/25</span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span>환불접수번호</span>
+    </td>
+    <td>
+      <span th:text="${cancelNum}">231454153</span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span>환불완료일</span>
+    </td>
+    <td>
+      <span th:text="${#temporals.format(cancelDate, 'yyyy-MM-dd HH:mm')}">2020/6/25</span>
+    </td>
+  </tr>
+</table>
+
+<span class="span04">환불정보</span>
+<table class="table03">
+  <tr>
+    <td rowspan="2">
+      <span>사용금액</span><span th:text="${payAmount}">24000</span><span>원</span><br>
+      <span>취소 수수료</span><span>1000</span><span>원</span>
+    </td>
+    <td>
+      <span>환불 수단</span><span>카카오 페이</span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span>환불 완료</span><span th:text="${refundAmount}">16800</span><span>원</span>
+    </td>
+  </tr>
+</table>
+
+<div class="div01">
+  <button class="button01">목록</button>
+</div>
+
+  <div style="height: 150px;"></div>
+</div>
+
+
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+<script>
+  $('.button01').on('click' ,function () {
+    history.go(-1);
+  });
+
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02?retryCheck=no";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+</body>
+</html>

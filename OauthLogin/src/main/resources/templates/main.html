@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+    <link href="/css/main.css" rel="stylesheet">
+    <title>홈</title>
+</head>
+<script>
+    $(function () {
+
+        /**카테고리영역**/
+        $(".submenu").hide();
+
+        $(".catagory").mouseover(function () {
+            $(".submenu").slideDown();
+        });
+
+        $(".submenu").mouseleave(function () {
+            $(".submenu").hide();
+        });
+
+        /**검색영역**/
+        $(".search input").hide();
+        $(".search button").hide();
+
+        $(".searchIcon").mouseover(function () {
+            $(".search input").slideDown();
+            $(".search button").slideDown();
+        });
+
+        /**슬라이드(광고) 영역**/
+        var idx_lgth = $("#visual>div").length;
+        var srt = 0;
+        var idx = 0;
+
+        $("section>a").click(function(){
+            console.log(this);
+            console.log($(this).addClass('on'));
+            idx = $(this).index();
+            srt = idx;
+            $(this).addClass('on').siblings().removeClass('on');
+            $("#visual>div").eq(idx).addClass('on').siblings().removeClass('on');
+        });
+
+        var AutoSlide = setInterval(AutoRun, 2000);
+
+        /*************************수민*********************************************/
+        $("#visual>div").click(function (){
+            var eventnumber = srt + 1;
+            location.href = "/goodListForevent1/"+ eventnumber;
+        })
+        /*************************수민*********************************************/
+
+        function AutoRun(){
+            srt++;
+
+            if(srt == idx_lgth){
+                srt = 0;
+            }
+            $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+            $("#visual>div").eq(srt).addClass('on').siblings().removeClass('on');
+        }
+
+        $("#visual").mouseover(function(){
+            clearInterval(AutoSlide);
+        });
+
+        $("#visual").mouseleave(function(){
+            AutoSlide = setInterval(AutoRun, 2000);
+        });
+
+    });
+</script>
+<body>
+<div id="sidebar">
+    <div id="menu_head">
+        <li id="head_list">
+            <div class="logo"><p> Mega market</p></div>
+            <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+            <form action="/productSearch" method="get">
+            <div class="search">
+                <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+                <div class="btnSearchDiv01">
+                    <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+                        <img src="/images/glasses01.png" alt="" class="glasses">
+                    </button>
+                </div>
+            </div>
+            </form>
+        </li>
+    </div>
+    <div id = "menu_profile">
+        <li id = "profile_area">
+            <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+            <div class="nickname">
+                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+<!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+                <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+                <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+            </div>
+        </li>
+    </div>
+    <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+<!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+    <div id = "menu_area">
+
+        <ul role="menu">
+            <li class = "myPage">
+                <a href= "/myPage" style="text-decoration:none">
+                    <!-- 추가-->
+                    <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+                </a>
+            </li>
+            <li>
+                <a href= "/main" style="text-decoration:none">
+                    <img src="/images/menu1.png" width="30px" height="30px">홈
+                </a>
+            </li>
+            <li>
+                <a href= "/newProduct" style="text-decoration:none">
+                    <img src="/images/menu2.png" width="30px" height="30px">신상품
+                </a>
+            </li>
+            <li>
+                <a href= "/best" style="text-decoration:none">
+                    <img src="/images/menu3.png" width="30px" height="30px">베스트
+                </a>
+            <li>
+            <li>
+                <a href= "/event" style="text-decoration:none">
+                    <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+                </a>
+            </li>
+            <li class = "catagory" >
+                <a href= "#" style="text-decoration:none">
+                    <img src="/images/menu5.png" width="30px" height="30px">카테고리
+                </a>
+            </li>
+            <div class = "submenu">
+                <li>
+                    <a href="/goodList/vegetable" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">채소
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fruitrice" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/fish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">수산,해산
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/snackbread" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/meat" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">정육,계란
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/oilnoodle" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/drink" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">생수,음료
+                    </a>
+                </li>
+                <li>
+                    <a href="/goodList/maindish" style="text-decoration:none">
+                        <img src="/images/circle.png" width="3px" height="3px">메인요리
+                    </a>
+                </li>
+            </div>
+            <!-- 추가-->
+
+        </ul>
+<!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+    </div>
+</div>
+<div id = "main">
+    <div class = "pageContents">
+        <div class="alarmWarp">
+            <div id="visual">
+                <div class="on"><a href="#"><img src="/images/eventList1.jpg" alt="1" height="200px"></a></div>
+                <div><a href="#"><img src="/images/eventList2.jpg" alt="2" height="200px"></a></div>
+                <div><a href="#"><img src="/images/eventList3.jpg" alt="3" height="200px"></a></div>
+                <div><a href="#"><img src="/images/eventList4.jpg" alt="4" height="200px"></a></div>
+                <!--                /****************************수민*******************************/-->
+                <section id="control">
+                    <a class="on" href="/goodListForevent1/1"></a>
+                    <a href="/goodListForevent1/2"></a>
+                    <a href="/goodListForevent1/3"></a>
+                    <a href="/goodListForevent1/4"></a>
+                </section>
+                <!--                /****************************수민*******************************/-->
+            </div>
+        </div>
+        <div class ="catagoryWarp">
+            <ul class="goodcatagory">
+                <div>
+                    <a href="/goodList/vegetable" style="text-decoration:none">
+                        <img src="/images/vegetable.png" width="80px" height="80px">
+                        <div class="vegetabletext"><small>채소</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/fruitrice" style="text-decoration:none">
+                        <img src="/images/fruitrice.png" width="80px" height="80px">
+                        <div class="fruitricetext"><small>과일,견과,쌀</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/fish" style="text-decoration:none">
+                        <img src="/images/fish.png" width="80px" height="80px">
+                        <div class="fishtext"><small>수산,해산</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/snackbread" style="text-decoration:none">
+                        <img src="/images/snackbread.png" width="80px" height="80px">
+                        <div class="snackbreadtext"><small>베이커리,과자</small></div>
+                    </a>
+                </div>
+            </ul>
+            <ul class="goodcatagory2">
+                <div>
+                    <a href="/goodList/meat" style="text-decoration:none">
+                        <img src="/images/meat.png" width="80px" height="80px">
+                        <div class="meattext"><small>정육,계란</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/oilnoodle" style="text-decoration:none">
+                        <img src="/images/oilnoodle.png" width="80px" height="80px">
+                        <div class="oilnoodletext"><small>면,양념,오일</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/drink" style="text-decoration:none">
+                        <img src="/images/drink.png" width="80px" height="80px">
+                        <div class="drinktext"><small>생수,음료</small></div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/goodList/importantdish" style="text-decoration:none">
+                        <img src="/images/soup.png" width="80px" height="80px">
+                        <div class="ssouptext"><small>메인요리</small></div>
+                    </a>
+                </div>
+            </ul>
+        </div>
+
+
+        <!--<div th:if="${session.user != null}">
+            <input name="sessionId" th:value="*{session.user}" type="hidden" />-->
+
+        <!--<a th:href="@{/logout}" class="logoutCheck">logout</a>
+    <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/login">logout1</a>
+    <a href="https://www.google.com/accounts/Logout?">logout2</a>
+    <a href="https://www.google.com/accounts/Logout?continue=http://localhost:80/login">logout3</a>
+        &lt;!&ndash; 카카오 로그아웃 &ndash;&gt;
+        <a href="https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/login">Kakao logout</a>
+        &lt;!&ndash; 네이버 로그아웃
+        <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=36bJcACbobjXzi7kGTxb&state=STATE_STRING&redirect_uri=http://localhost/login&auth_type=reauthenticate">naver logout</a>
+        <img src="https://mail.google.com/mail/u/0/?logout&hl=en" /&ndash;&gt;>
+    &lt;!&ndash;</div>&ndash;&gt;
+    <a href="#" onclick="signOut()" >google logout</a>-->
+
+<!--        <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+        <!--<form action="/logout" method="post">
+            <input type="hidden" name="sessionId" th:value="*{sessionId}" />
+            <button class="btn btn-sm btn-info" type="submit">강제 종료</button>
+        </form>-->
+
+        <input type="hidden" class="googleLogin" th:value="${googleLogin}">
+        <input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+        <!-- <th:block th:each="user:${sessionList}">
+             <th:block th:each="sessionInfo, i:${user.sessions}" th:object="${sessionInfo}">
+                 <tr>
+                     <td th:if="${i.index == 0}" th:rowspan="${user.count}" th:text="${user.name}"> username </td>
+                     <td th:text="*{sessionId}"> sessionId </td>
+                     <td th:text="*{#dates.format(time, 'yyyy-MM-dd HH:mm:ss')}"> time </td>
+                     <td>
+                         <form th:action="@{/session/expire}" method="post">
+                             <input type="hidden" name="sessionId" th:value="*{sessionId}" />
+                             <button class="btn btn-sm btn-info" type="submit">강제 종료</button>
+                         </form>
+                     </td>
+                 </tr>
+             </th:block>
+         </th:block>-->
+    </div>
+</div>
+<script>
+    $('.logoutCheck').click(function () {
+
+        var googleLogin = $('.googleLogin').val();
+        var kakaoLogin =  $('.kakaoLogin').val();
+        console.log("googleLogin : " + googleLogin);
+        console.log("kakaoLogin : " + kakaoLogin);
+        if(googleLogin == "true"){
+            location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+        }
+        else if(kakaoLogin == "true"){
+            location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+        }else{
+            // location.href = "/loginForm02";
+
+            $.ajax({
+                url : '/logoutForUser',
+                type : 'get',
+                data : {
+
+                },
+                success : function (result) {
+                    console.log("로그아웃 요청 성공");
+                    console.log("result : " + result);
+                    location.href="/loginForm02?retryCheck=no";
+                },
+                error : function () {
+                    console.log("로그아웃 요청 실패");
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

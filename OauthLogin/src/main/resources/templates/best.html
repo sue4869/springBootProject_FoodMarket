@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>베스트</title>
+  <!--  /********************수민********************/-->
+  <!-- 밑에 토스트창 을 위한 import -->
+  <link href="/css/toastr.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!--  /********************수민********************/-->
+  <link href="/css/best.css" rel="stylesheet">
+  <script>
+
+    // var flag = false;
+
+    $(function () {
+
+      /**카테고리영역**/
+      $(".submenu").hide();
+
+      $(".catagory").mouseover(function () {
+        $(".submenu").slideDown();
+      });
+
+      $(".submenu").mouseleave(function () {
+        $(".submenu").hide();
+      });
+
+      /**검색영역**/
+      $(".search input").hide();
+      $(".search button").hide();
+
+      $(".searchIcon").mouseover(function () {
+        $(".search input").slideDown();
+        $(".search button").slideDown();
+      });
+
+      /**정렬 색 바꾸기**/
+
+      let sorttype = $('#menutype').val();
+      console.log(sorttype);
+      if (sorttype == 1) {
+        $(".menutypefirst").css('color', '#EC407A');
+        $(".menutypesecond").css('color', 'black');
+        $(".menutypethird").css('color', 'black');
+      } else if (sorttype == 2) {
+        $(".menutypefirst").css('color', 'black');
+        $(".menutypesecond").css('color', '#EC407A');
+        $(".menutypethird").css('color', 'black');
+      } else if (sorttype == 3) {
+        $(".menutypefirst").css('color', 'black');
+        $(".menutypesecond").css('color', 'black');
+        $(".menutypethird").css('color', '#EC407A');
+      }
+
+      /**하트아이콘영역**/
+      $(".heartIcon").on("click",function () {
+        var heartId = $(this).attr("id") // 클릭한 클래스의 id 속성을 가져오게 함 //211021
+        var goodIdForHeart = heartId.substring(9)
+        console.log(goodIdForHeart);
+        $.ajax({
+          type : "Post",
+          url : "/heart",
+          async : false,
+          data : {
+            "goodId" : goodIdForHeart,
+            movePage : "movePage",
+            heartfullCheck : "heartfullCheck",
+
+          },
+          success: function (data) {
+            console.log("성공");
+            console.log($('.goodmega').val());
+            console.log(data.movePage);
+            console.log(data.heartfullCheck);
+
+            if(data.movePage == "/loginForm02"){
+              alert("로그인이 필요합니다.")
+              location.href=data.movePage;
+            }
+            else{
+              // if(data.movePage == "/goodListForevent1"){
+              //     console.log("flag : " + flag);
+              //이미지가 꽉찬 하트로 //해당 Id에 해당하는 이미지만 바뀌어야 한다.
+              if( data.heartfullCheck == true) {
+                $("#"+heartId).attr("src", "/images/heartFull.png")
+                // $('.heartIcon').attr("src", "/images/heartFull.png")
+                let count =  $('#goodNumberCount'+goodIdForHeart).text();
+                $('#goodNumberCount'+goodIdForHeart).text(parseInt(count) + 1);
+              } else {
+                //이미지가 빈 하트로
+                $("#"+heartId).attr("src", "/images/heart2.png")
+                let count =  $('#goodNumberCount'+goodIdForHeart).text();
+                $('#goodNumberCount'+goodIdForHeart).text(parseInt(count) - 1);
+              }
+              // }
+            }
+
+
+          },
+          error : function () {
+            console.log("실패");
+          }
+        });
+
+      });
+
+      /**장바구니**/
+      $(".cartIcon").on("click", function () {
+        var cartId = $(this).attr("id") // 클릭한 클래스의 id 속성을 가져오게 함 //211021
+        var goodIdForCart = cartId.substring(8)
+        console.log(goodIdForCart)
+        $.ajax({
+          type : "Post",
+          url : "/basket",
+          async : false,
+          data : {
+            "goodId" : goodIdForCart,
+            movePageCart : "movePageCart",
+            cartInCheck : "cartInCheck",
+
+          },
+          success: function (data) {
+            console.log("성공");
+            console.log(goodIdForCart);
+            console.log(data.movePageCart);
+            console.log(data.cartInCheck);
+
+            if(data.movePageCart == "/loginForm02"){
+              /***********************수민********************/
+              // alert("로그인이 필요합니다.")
+              $('#dialog-message').dialog({
+                modal: true,
+                buttons: {
+                  // 예 눌렀을 때
+                  "예": function() {
+                    $(this).dialog('close');
+                    location.href=data.movePageCart;
+                  },
+                  // 아니요 눌렀을 때
+                  "아니요": function() {
+                    $(this).dialog('close');
+                    // keepPay = false;
+                  }
+                }
+              });
+              /*********************수민********************/
+            }
+            else{
+
+              if( data.cartInCheck == true) {
+                /***************************수민********************/
+                $("#"+cartId).attr("src", "/images/fullshoppingcart.png")
+
+                toastr.options = {
+                  "closeButton": true, // 닫힘 버튼 보이게
+                  "debug": false, // 콘솔창에 토스트 관련 메시지를 띄울 것인가?
+                  "newestOnTop": false, // "새로운 팝업창을 띄울 때 위로 뜰지 말지 , 위로 true , 아래로 false"
+                  "progressBar" : true, // 닫히기 까지의 프로그레스바 표시( true)
+                  "positionClass" : "toast-bottom-full-width", // 팝업창 위치
+                  /*
+                  Top Right
+                  Bottom Right
+                  Bottom Left
+                  Top Left
+                  Top Full Width
+                  Bottom Full Width
+                  Top Center
+                  Bottom Center
+                   */
+                  "preventDuplicates": true, // 중복 실행 방지, false일 경우 여러번 실행 가능 , true 면 하나만 띄운다(없어지면 다시 띄우기 가능)              }
+                  "showDuration": 500, // 등장에 걸리는 시간. 공식 홈에서 문자로 되어있지만 숫자로 해야 먹힌다.
+                  "hideDuration": 1000, // 사라질 때 걸리는 시간, 공식 홈에서 문자로 되어있지만 숫자로 해야 먹힌다.
+                  "timeOut": 5000, // 자동으로 토스트가 사라지는 시간
+                  "extendedTimeOut": 1000, // 토스트에 호버링 했다 땠을 때 사라지는 시간(마우스 올렸다가 땟을 때)
+                  "showEasing": "swing", // 보일 때 애니메이션, siwng(끝부분에 살짝 드려짐) / linear ( 일정한 속도)
+                  "hideEasing": "linear", // 사라질 때 애니메이션 swing, linear
+                  "showMethod": "fadeIn", // 보일 때 효고 종류 show(그냥 보이게) , fadeIn( 천천히 해당위치에서 등장) , slideDown(위에서 아래로 펼치기)
+                  "hideMethod": "fadeOut"  // 사라질 때 효과 종류 hide , fadeOut(천천히 사라짐) , slideUp(아래에서 위로 사라짐)
+                },
+                        toastr.success("<div class='divToast01'><span>장바구니에 상품이 담겼습니다</span></div><div class='divToast02'><a href='/basket' class='linkForBasket'>장바구니로 이동</a></div>");
+
+
+
+                // $('.heartIcon').attr("src", "/images/heartFull.png")
+                /*************************수민********************/
+              } else {
+                //이미지가 검정 카트
+                $("#"+cartId).attr("src", "/images/shoppingcart.png")
+              }
+              // }
+            }
+
+
+          },
+          error : function () {
+            console.log("실패");
+          }
+        });
+      });
+
+
+      $("input[name='likeName']").each(function (i) {
+        //alert( i +  $("input[name='EMAIL']").eq(i).attr("value") );
+        var productNum = $("input[name='likeName']").eq(i).attr("value");
+        // console.log($("input[name='likeName']").eq(i).attr("value"));
+        // console.log($("#heartIcon"+productNum));
+        $("#heartIcon"+productNum).attr("src" , "/images/heartFull.png");
+      });
+      // console.log($('.likeNumbers').val());
+
+      $("input[name='basketName']").each(function (i) {
+        var basketNum = $("input[name='basketName']").eq(i).attr("value");
+        console.log($("input[name='basketName']").eq(i).attr("value"));
+        console.log($("#cartIcon"+basketNum));
+        $("#cartIcon"+basketNum).attr("src", "/images/fullshoppingcart.png");
+      })
+
+    });
+
+  </script>
+</head>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+<div id="main">
+  <div class="pageTitle">
+    <h1 class = "tit">베스트</h1>
+    <div id = "sortmenu">
+      <input type="hidden" th:value="${sort}" id="menutype">
+      <ul>
+        <li>
+          <a class = "menutypefirst" href= "/bestproduct/1" style="text-decoration:none" >인기순</a>
+        </li>
+        <li>
+          <a class = "menutypesecond" href= "/bestproduct/2" style="text-decoration:none" >낮은가격순</a>
+        </li>
+        <li>
+          <a class = "menutypethird" href= "/bestproduct/3" style="text-decoration:none" >높은가격순</a>
+        </li>
+      </ul>
+      <div class="clear"></div> <!-- float속성을 해지해준다 -->
+    </div>
+  </div>
+  <div class="pageContents">
+    <div class = "goodListWarp">
+      <ul class="list" th:each="good : ${bestproduct.dtoList}">
+        <li>
+          <img class="heartIcon" th:id= "heartIcon+${good.getProductId()}"  src="/images/heart2.png">
+          <img class="cartIcon" th:id= "cartIcon+${good.getProductId()}" src="/images/shoppingcart.png">
+          <a class="img" th:href="@{/goodDetail/{id}(id = ${good.getProductId()})}">
+            <img th:src="@{${good.getImage()}}"  width="250px" height="300px">
+          </a>
+        </li>
+        <li class="listname">
+          <div th:text="${good.getGoodName()}"></div>
+          <div class="goodNumberCount">좋아요 : <span th:text="${good.getHeartNumber()}" th:id="goodNumberCount+${good.getProductId()}"></span></div>
+        </li>
+        <li class="dc">
+          <!--          /****************************수민*************************/-->
+          <div  th:if ="${good.getDiscount()} != '0'" class="number" th:text="${good.getDiscount()}+'%'"></div>
+          <!--          /****************************수민*************************-->
+          <div class="listcost" th:text="${good.getPrice()}"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class = "pageWrap">
+    <ul class="pagination h-100 justify-content-center align-items-center ulcenter">
+      <li  class="page-item" th:if="${bestproduct.prev}">
+        <a class="page-link" th:href="@{/bestproduct/{sort}(sort=${sort},page = ${bestproduct.start-1})}">이전</a>
+      </li>
+      <li th:id="'resultbyregdate'+${page}" th:class=" 'page-item' + ${bestproduct.page == page?' active':''} " th:each="page : ${bestproduct.pageList}">
+        <a class="page-link" th:href="@{/bestproduct/{sort}(sort=${sort} ,page = ${page})}">[[${page}]]</a>
+      </li>
+      <li class="page-item" th:if="${bestproduct.next}">
+        <a class="page-link" th:href="@{/bestproduct/{sort}(sort=${sort},page = ${bestproduct.end+1})}">다음</a>
+      </li>
+    </ul>
+  </div>
+  <input type="hidden" class="googleLogin" th:value="${googleLogin}">
+  <input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+</div>
+
+<th:block th:each="like : ${likeList}">
+  <input type="hidden" th:value="${like.getProduct().getId()}" th:id="likeNum+${like.getId()}" name="likeName" class="likeNumbers">
+</th:block>
+<th:block th:each="basket : ${basketList}">
+  <input type="hidden" th:value="${basket.getProduct().getId()}" th:id="basketNum+${basket.getId()}" name="basketName" class="basketNumbers">
+</th:block>
+
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+<!--/********************수민********************/-->
+
+<div id="dialog-message" title="선택하세요." style='display:none;'>
+  장바구니에 담기 위해선 로그인이필요합니다. 로그인창으로 이동하시겠습니까?
+</div>
+<div id="dialog-message02" title="선택하세요." style='display:none;'>
+  상품을 좋아요 하기 위해선 로그인이필요합니다. 로그인창으로 이동하시겠습니까?
+</div>
+<!-- 밑에 토스트창 을 위한 import -->
+<script type="text/javascript" src="/js/toastr.js"></script>
+<script type="text/javascript" src="/js/custom/jquery-ui.js"></script>
+<!--/********************수민********************/-->
+
+<script>
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02?retryCheck=no";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+</body>
+</html>
+</body>
+</html>

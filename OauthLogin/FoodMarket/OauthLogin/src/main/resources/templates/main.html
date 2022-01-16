@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        margin-top: 50px;
+        margin-left: 40px;
+        text-align: center;
+    }
+
+    ul{padding-bottom: 10px}
+    a{display: block; overflow: hidden; position: relative}
+</style>
+<body>
+<div id = "main">
+    <div class = "pageTitle">
+        <h1 class = "tit">오늘의 행사</h1>
+    </div>
+    <div class = "pageContents">
+        <form action="#" method="post" class="eventList">
+            <ul class="list">
+                <oi>
+                    <a href= "#">
+                        <img src="images/eventList1.jpg" alt="행사1" width="1000">
+                    </a>
+                </oi>
+            </ul>
+            <ul class="list2">
+                <oi>
+                    <a href= "#">
+                        <img src="images/eventList2.jpg" alt="행사2" width="1000">
+                    </a>
+                </oi>
+            </ul>
+            <ul class="list3">
+                <oi>
+                    <a href= "#">
+                        <img src="images/eventList3.jpg" alt="행사3" width="1000">
+                    </a>
+                </oi>
+            </ul>
+            <ul class="list4">
+                <oi>
+                    <a href= "#">
+                        <img src="images/eventList4.jpg" alt="행사4" width="1000">
+                    </a>
+                </oi>
+            </ul>
+            <div th:if="${session.user != null}">
+                <input name="sessionId" th:value="*{session.user.email}" />
+                <a th:href="@{/logout}">logout</a>
+                <a href="https://developers.kakao.com/logout">logout</a>
+                <a href="https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/login">logout</a>
+                <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=36bJcACbobjXzi7kGTxb&state=STATE_STRING&redirect_uri=http://localhost/login&auth_type=reauthenticate
+">naver</a>
+                <img src="https://mail.google.com/mail/u/0/?logout&hl=en" />
+            </div>
+            <!--<form th:action="@{/logout}" method="get">
+                <input type="hidden" name="sessionId" th:value="*{sessionId}" />
+                <button class="btn btn-sm btn-info" type="submit">강제 종료</button>
+            </form>-->
+
+        </form>
+ <!--       <th:block th:each="user:${sessionList}">
+            <th:block th:each="sessionInfo, i:${user.sessions}" th:object="${sessionInfo}">
+                <tr>
+                    <td th:if="${i.index == 0}" th:rowspan="${user.count}" th:text="${user.name}"> username </td>
+                    <td th:text="*{sessionId}"> sessionId </td>
+                    <td th:text="*{#dates.format(time, 'yyyy-MM-dd HH:mm:ss')}"> time </td>
+                    <td>
+                        <form th:action="@{/session/expire}" method="post">
+                            <input type="hidden" name="sessionId" th:value="*{sessionId}" />
+                            <button class="btn btn-sm btn-info" type="submit">강제 종료</button>
+                        </form>
+                    </td>
+                </tr>
+            </th:block>
+        </th:block>-->
+    </div>
+</div>
+</body>
+</html>

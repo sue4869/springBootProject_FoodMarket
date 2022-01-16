@@ -1,0 +1,353 @@
+@charset "utf-8";
+/*******************사이드 바*****************/
+#sidebar{
+    position: fixed;
+    background: #212121;
+    color : white;
+    width: 200px;
+    height: 100%;
+}
+
+#sidebar li {
+    list-style: none;
+}
+#head_list{
+    display: flex;
+    margin-left: 30px;
+}
+#sidebar li .logo {
+    color: #AD1457;
+    font-size: 30px;
+    margin-left: 15px;
+    display: inline-block;
+    flex: 1;
+
+
+}
+#sidebar li .search_area{
+    margin-top: 40px;
+    flex: 1;
+}
+
+#sidebar .search input{
+    margin-top: 50px;
+    margin-left: 25px;
+    border-radius: 6px;
+    width: 300px;
+    height: 20px;
+}
+
+#sidebar button {
+    background: #212121;
+    border: #212121;
+    width: 50px;
+}
+
+#sidebar #profile_area{
+    border: solid white;
+    display: flex;
+    border-color: black;
+    width: 150px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.profile_icon {
+    flex: 1;
+}
+
+.profile_icon img {
+    margin-left: 10px;
+}
+
+.nickname {
+    flex: 1;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+
+
+#menu_area {
+    list-style: none;
+}
+#menu_area li{
+    display: flex;
+    margin-top: 5px;
+
+}
+
+#menu_area a{
+    color: white;
+}
+
+#menu_area img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#menu_profile{
+    margin-bottom: 1px;
+}
+
+
+
+.catagory img{
+    margin-top: 5px;
+    vertical-align: bottom;
+
+}
+
+.submenu {
+    font-size: 3px;
+    border: solid #AD1457;
+    width: 100px;
+    padding-left: 15px;
+    margin-left: 30px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+
+}
+
+.submenu img {
+    margin-top: 4px;
+}
+
+
+/*<!-- 추가-->*/
+.logoutCheck {
+    margin-left: 133px;
+    color: #AD1457;
+    font-size: 13px;
+}
+
+
+
+/****************************메인**********************/
+#main{
+    position: absolute;
+    width: 1000px;
+    margin-top: 100px;
+    margin-left: 400px;
+    margin-right: 50px;
+}
+
+/**로그인**/
+#unlogined{
+    border: none;
+    background-color: #212121;
+    color: white;
+    font-size: 15px;
+}
+#logined{
+    color: white;
+    font-size: 15px;
+}
+.glasses{
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+}
+/* add */
+.searchInput{
+    height: 20px;
+}
+.btnSearchDiv01{
+    margin-top: -23px;
+    margin-left: -3px;
+    width: 1px;
+}
+.btnSearch{
+    margin-left: 340px;
+    margin-top: -19px;
+    background-color: white;
+}
+
+/*-----------------------------------*/
+.fontsize{
+    font-size: 20px;
+    line-height: 1px;
+}
+.p01{
+    display: inline-block;
+}
+.stick01{
+    width: 650px;
+    height: 5.5px;
+    background-color: black;
+    margin-bottom: 15px;
+}
+.inputId{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 85px;
+    width: 350px;
+    height: 40px;
+}
+.inputId::placeholder{
+    text-align: center;
+}
+.inputPassword{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 65px;
+    width: 350px;
+    height: 40px;
+}
+.inputPassword::placeholder{
+    text-align: center;
+}
+.inputPasswordAgain{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 18px;
+    width: 350px;
+    height: 40px;
+}
+.inputPasswordAgain::placeholder{
+    text-align: center;
+}
+.result{
+    margin-top: 9px;
+    margin-left: 170px;
+}
+
+.inputName{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 105px;
+    width: 350px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.inputName::placeholder{
+    text-align: center;
+}
+.inputEmail{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 84px;
+    width: 350px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+.inputEmail::placeholder{
+    text-align: center;
+}
+.inputPhone{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 84px;
+    width: 350px;
+    height: 40px;
+}
+.inputPhone::placeholder{
+    text-align: center;
+}
+.inputAuthNum{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 156px;
+    width: 350px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+.inputAuthNum::placeholder{
+    text-align: center;
+}
+.inputAddress{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 103px;
+    width: 350px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.inputAddress::placeholder{
+    text-align: center;
+}
+.detailAddress{
+    background-color: rgb(221, 221, 221);
+    border : solid 1px rgb(221,221,221);
+    margin-left: 55px;
+    width: 350px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+.detailAddress::placeholder{
+    text-align: center;
+}
+.checkId{
+    width: 85px;
+    height: 44px;
+    border-radius: 12px;
+    border: solid 0.1px rgb(14, 179, 255);
+    background-color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+.Title{
+    width: 550px;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: -30px;
+}
+.star{
+    color: red;
+}
+.checkPwText{
+    font-size: 13px;
+    margin-left: 156px;
+}
+.BASIC{
+    width : 320px;
+    height: 45px;
+    background-color: black;
+    border: solid 1px black;
+    margin-bottom: 12px;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: white;
+    margin-left: 122px;
+}
+.getNum{
+    width: 130px;
+    height: 44px;
+    text-align: center;
+    border-radius: 12px;
+    border: solid 0.1px rgb(14, 179, 255);
+    background-color: white;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 6px;
+}
+.getNumAuth{
+    width: 130px;
+    height: 44px;
+    text-align: center;
+    border-radius: 12px;
+    border: solid 0.1px rgb(14, 179, 255);
+    background-color: white;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 6px;
+}
+label {
+    display: block;
+    font-size: 20px;
+    margin-left: 150px;
+
+}
+.agreeForm{
+    margin-top: 5px;
+
+}
+.notAll{
+    margin-top: 12px;
+}
+.right{
+    margin-bottom: 10px;
+    margin-top: -45px;
+}
+.text01{
+    font-size: 20px;
+}

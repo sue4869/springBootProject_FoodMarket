@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+  <!-- 상세주소 자바스크립트 import -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <link rel="stylesheet" href="/css/registor.css">
+  <title>회원가입</title>
+</head>
+<script>
+  $(function () {
+
+    /**카테고리영역**/
+    $(".submenu").hide();
+
+    $(".catagory").mouseover(function () {
+      $(".submenu").slideDown();
+    });
+
+    $(".submenu").mouseleave(function () {
+      $(".submenu").hide();
+    });
+
+    /**검색영역**/
+    $(".search input").hide();
+    $(".search button").hide();
+
+    $(".searchIcon").mouseover(function () {
+      $(".search input").slideDown();
+      $(".search button").slideDown();
+    });
+
+  });
+</script>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+<div id="main">
+<p class="Title p01">회원가입</p><p class="star p01">*</p><p class="p01">필수사항</p>
+<div class="stick01"></div>
+<form action="/registorCheck" method="post" name="userinput">
+  <p class="fontsize p01">아이디</p><p class="star p01">*</p> <input type="text" class="inputId" placeholder="6자 이상의 영문 혹은 영문과 숫자 조합" name="userId"> <button class="checkId" type="button">중복확인</button> <br>
+  <p class="fontsize p01">비밀번호</p><p class="star p01">*</p> <input type="password" class="inputPassword" placeholder="비밀번호를 입력해주세요" name="password"><br>
+  <div class="result"></div><br>
+  <p class="fontsize p01">비밀번호 확인</p><p class="star p01">*</p> <input type="password" class="inputPasswordAgain" placeholder="비밀번호를 한번 더 입력해주세요"><br>
+  <span class="checkPwText">-동일한 비밀번호를 입력해주세요</span> <!--<button class="checkId" onclick="check()">비밀번호 확인</button>--><br>
+  <p class="fontsize p01">이름</p><p class="star p01">*</p> <input type="text" class="inputName" placeholder="이름을 입력해주세요" name="name"><br>
+  <p class="fontsize p01">이메일</p><p class="star p01">*</p> <input type="text" class="inputEmail" placeholder="이메일을 입력해주세요" name="email"><br>
+  <p class="fontsize p01">휴대폰</p><p class="star p01">*</p> <input type="text" class="inputPhone" placeholder="휴대폰 번호를 입력해주세요" name="phoneNumber" ><button class="getNum" type="button">인증번호 받기</button><br>
+  <input type="text" class="inputAuthNum" placeholder="인증번호를 입력해주세요"><button class="getNumAuth" type="button" >입력</button><br>
+  <p class="fontsize p01">주소</p><p class="star p01">*</p> <input type="text" class="inputAddress" placeholder="주소 검색" name="bigAddress"><br>
+  <p class="fontsize p01">상세 주소</p><p class="star p01">*</p> <input type="text" class="detailAddress" placeholder="상세 검색" name="detailAddress"><br>
+  <div class="stick01"></div>
+  <span class="fontsize"><p class="text01 p01">이용약관동의</p><p class="star p01">*</p></span>
+  <div class="right">
+    <label for="agree_all" class="labelFirst">
+      <input type="checkbox" name="agree_all" id="agree_all">
+      <span>모두 동의합니다</span>
+    </label>
+    <label for="agree" class="notAll">
+      <input type="checkbox" name="agree" value="1">
+      <span>이용약관 동의<strong> (필수)</strong></span>
+    </label>
+    <label for="agree" class="notAll">
+      <input type="checkbox" name="agree" value="2">
+      <span>개인정보 수집, 이용 동의<strong> (필수)</strong></span>
+    </label>
+    <label for="agree" class="notAll">
+      <input type="checkbox" name="agree" value="3">
+      <span>개인정보 이용 동의<strong> (필수)</strong></span>
+    </label>
+    <label for="agree" class="notAll">
+      <input type="checkbox" name="agree" value="4">
+      <span>이벤트, 혜택정보 수신동의<strong class="select_disable"> (선택)</strong></span>
+    </label>
+  </div>
+  <input type="hidden" name="idLapCheck"  class="LapCheck" value="">
+  <input type="hidden" name="authed" class="phoneNumAuthCheck" value="">
+  <button type="submit"  class="submit BASIC"  onclick="check()">가입하기</button>
+</form>
+</div>
+
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+
+<div style="height: 100px;"></div>
+<script>
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/loginForm02";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/loginForm02";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+<script>
+  const password = document.querySelector('.inputPassword');
+  /*console.log(password);*/
+  const result = document.querySelector('.result');
+  /*console.log(result);*/
+
+  /* 가입하기 눌렀을 때 핸드폰인증 했는지 안했는지 체크 하기위한 변수 */
+  var authed = false;
+
+  /* 가입하기 눌렀을 때 아이디 중복 확인을 했는지 체크 하기위한 변수 */
+  var idLapCheck = false;
+
+  password.addEventListener('click', () =>{
+    var message = "- 비밀번호 8자 이상 ";
+    // + '\n' + "- 1개 이상의 특수문자 포함";
+
+    console.log(message);
+    result.innerText=message;
+  });
+
+  // 동의 모두선택 / 해제
+  const agreeChkAll = document.querySelector('input[name=agree_all]');
+  agreeChkAll.addEventListener('change', (e) => {
+    let agreeChk = document.querySelectorAll('input[name=agree]');
+    for(let i = 0; i < agreeChk.length; i++){
+      agreeChk[i].checked = e.target.checked;
+    }
+  });
+
+  /* 회원가입 눌럿을때 체크해야할 것들 체크하는 함수 */
+  function check() {
+    var p1 = document.querySelector('.inputPassword').value;
+    var p2 = document.querySelector('.inputPasswordAgain').value;
+
+    console.log(p1);
+    console.log(p2);
+
+    if(p1.length < 6) {
+      alert('입력한 글자가 8글자 이상이어야 합니다.');
+      // return false;
+    }
+
+    if( p1 != p2 ) {
+      alert("비밀번호불일치");
+      // return false;
+    } else{
+      // alert("비밀번호가 일치합니다");
+      // return true;
+    }
+
+    let agreeChk = document.querySelectorAll('input[name=agree]');
+    let count = 0;
+    for(let i = 0  ; i < agreeChk.length; i++){
+      if(agreeChk[i].checked){
+        count++;
+      }
+    }
+    if(count >= 3){
+      count = 0;
+    }else if(count < 3){
+      alert("이용약관동의 의 필수 사항은 모두 체크되어야 합니다. ");
+      count = 0;
+    }
+
+    if(authed == false){
+      alert("핸드폰 본인인증을 통과하셔야합니다.");
+      /*$('.phoneNumAuthCheck').setAttribute("value" , "phoneFalse");*/
+      document.querySelector('.phoneNumAuthCheck').value = "phoneFalse";
+    }else{
+      /*$('.phoneNumAuthCheck').setAttribute("value", "phoneTrue");*/
+      document.querySelector('.phoneNumAuthCheck').value = "phoneTrue";
+    }
+
+    if($(".inputAddress").val() == null || $(".inputAddress").val() == ""){
+      alert(" 주소를 입력해주세요");
+    }
+    if($(".detailAddress").val() == null || $(".detailAddress").val() == ""){
+      alert(" 상세 주소를 입력해주세요");
+    }
+
+    if(idLapCheck == false){
+      alert("아이디 중복 체크를 해주세요");
+      /*$('.LapCheck').setAttribute("value" , "idFalse");*/
+      document.querySelector('.LapCheck').value = "idFalse";
+    }
+    else{
+      /*$('.LapCheck').setAttribute("value" , "idTrue");*/
+      document.querySelector('.LapCheck').value = "idTrue";
+    }
+
+    if($('.inputEmail').val() == null || $('.inputEmail').val() == ""){
+      alert("이메일을 입력해주세요");
+    }
+
+    if($('.inputName').val() == null || $('.inputName').val() == ""){
+      alert("이름을 입력해주세요");
+    }
+
+    /*$.ajax({
+      url : "/registorCheck",
+      type : "POST",
+      data : {"idLapCheck" : idLapCheck ,
+          "authed" : authed },
+      success : function (data){
+        console.log("회원가입 주요체크 전송 완료");
+      },
+      error : function (error) {
+        console.log("회원가입 주요체크 전송 실패");
+      }
+
+    });*/
+
+  }
+
+
+  document.querySelector(".inputAddress").addEventListener("click", function(){ //주소입력칸을 클릭하면
+    //카카오 지도 발생
+    new daum.Postcode({
+      oncomplete: function(data) { //선택시 입력값 세팅
+        document.querySelector(".inputAddress").value = data.address; // 주소 넣기
+        document.querySelector("input[class=detailAddress]").focus(); //상세입력 포커싱
+      }
+    }).open();
+  });
+
+  $(".getNum").click(function () {
+
+    /*var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");*/
+
+    console.log($('.inputPhone').val());
+    alert("인증 번호가 발송되었습니다");
+    var data={"name":$('.inputPhone').val()}
+    $.ajax({
+      url: "/message",
+      type: "POST",
+      data: {"name" : $('.inputPhone').val()},
+      /*      contentType: "application/json; charset=utf-8",*/
+      /*dataType: "text",*/
+      /*      beforeSend : function(xhr){
+                /!*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*!/
+                  xhr.setRequestHeader(header, token);
+            },*/
+      success: function (result) {
+        console.log("success : " + result);
+        console.log("data : " + JSON.stringify(data));
+
+      },
+      error: function (result) {
+        console.log("failed : " + result);
+
+        /*console.log("data : " + JSON.stringify(data));*/
+      }
+    });
+  });
+
+
+  // <input type="text" className="inputAuthNum" placeholder="인증번호를 입력해주세요">
+  //   <button className="getNumAuth" type="button">입력</button>
+  //   <br>
+
+
+
+   $(".getNumAuth").click(function () {
+     $.ajax({
+       type : "GET",
+       url : "authNum",
+       data : {
+         authNum : "${authNum}"
+       },
+       error : function(error) {
+         console.log("error");
+       },
+       success : function(data) {
+         console.log("success");
+         console.log(data.authNum);
+         if($(".inputAuthNum").val() == data.authNum){
+           alert("본인인증이 완료되었습니다.");
+           authed = true;
+         }
+         else{
+           alert("인증번호가 틀렸습니다.");
+         }
+       }
+     });
+   });
+
+  // <p className="fontsize">아이디</p>
+  // <p className="star">*</p>
+  // <input type="text" className="inputId" placeholder="6자 이상의 영문 혹은 영문과 숫자 조합">
+  //   <button className="checkId">중복확인</button>
+  //   <br>
+
+  // $(".checkId").click(function () {
+  //
+  //   let idCount = 0;
+  //
+  //   $.ajax({
+  //     type : "GET",
+  //     url : "idOverlapCheck",
+  //     data : { userList : "${userList}"} ,
+  //     success : function (data){
+  //       console.log("get id success");
+  //       for(let i = 0 ; i < data.userList.length; i++){
+  //         if(data.userList[i].userId == $('.inputId').val()){
+  //           idCount++;
+  //         }
+  //       }
+  //
+  //       if(idCount = 0){
+  //         alert("사용 가능한 아이디입니다.");
+  //         idLapCheck = true;
+  //       }
+  //       else if(idCount > 0){
+  //         alert("이미 사용중인 아이디입니다.");
+  //         idLapCheck = false;
+  //       }
+  //
+  //     },
+  //     error : function (error){
+  //       console.log("get id failed");
+  //     }
+  //   })
+  // });
+
+  $(".checkId").click(function () {
+
+/*    let idCount = 0;
+
+    $.ajax({
+      type : "POST",
+      url : "/idOverlapCheck",
+      data : { "inputId" : $(".inputId").val()} ,
+      success : function (data){
+        console.log("send id success");
+      },
+      error : function (error){
+        console.log("send id failed");
+      }
+    });*/
+
+    $.ajax({
+      type : "GET",
+      url : "/sendBoolean",
+      data : {idLapCheck : "idLapCheck",
+        "inputId" : $(".inputId").val()
+      },
+      success : function (data){
+        console.log("get idLapCheck success");
+        if(data.idLapCheck == false){
+          alert("이미 사용중인 아이디 입니다.");
+          idLapCheck = false;
+        }
+        else if(data.idLapCheck == true){
+          alert("사용 가능한 아이디 입니다.");
+          idLapCheck = true;
+        }
+      },
+      error : function (error){
+        console.log("get idLapCheck failed");
+      }
+    })
+  });
+
+</script>
+
+
+</body>
+</html>

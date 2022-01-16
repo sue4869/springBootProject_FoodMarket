@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>로그인 (Please sign in)</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<p class="loginText">로그인</p>
+<div class="stick01"></div>
+<form action="#" method="POST" class="loginform">
+  <p class="id">아이디</p> <input type="text" class="inputId" placeholder="아이디를 입력해주세요" name="id"> <br>
+  <p class="pw">비밀번호</p> <input type="password" class="inputPw" placeholder="비밀번호를 입력해주세요" name="password"><br>
+  <a th:href="@{/findId}"><p class="findId">ID 찾기</p></a> <p class="findIdPwText">/</p> <a th:href=@{/findPw01}><p class="findPw">비밀번호 찾기</p></a><br>
+
+  <p class="wrong"> 아이디 혹은 비밀번호가 틀렸습니다. </p>
+  <div class="stick02"></div>
+<!--
+  <button type="button" class="all btn01 NAVER" th:onclick="'location.href=\''+ @{${Nurls}} + '\''">NAVER 로그인</button><br>-->
+  <button type="button" class="all btn01 GOOGLE" th:onclick="'location.href=\''+ @{${Gurls}} + '\''">GOOGLE 로그인</button><br>
+  <button type="button" class="all btn01 KAKAO" th:onclick="'location.href=\''+ @{${Kurls}}+ '\''">KAKAO 로그인</button><br>
+  <button type="submit" class="all btn02 BASIC">로그인</button><br>
+  <button type="button" class="all btn02 BASIC" th:onclick="location.href='/registor'">회원가입</button><br>
+</form>
+
+</body>
+</html>

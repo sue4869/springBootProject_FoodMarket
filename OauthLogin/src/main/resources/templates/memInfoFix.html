@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+  <!-- 상세주소 자바스크립트 import -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <link rel="stylesheet" href="/css/memInfoFix.css">
+  <title>Document</title>
+</head>
+<script>
+  $(function () {
+
+    /**카테고리영역**/
+    $(".submenu").hide();
+
+    $(".catagory").mouseover(function () {
+      $(".submenu").slideDown();
+    });
+
+    $(".submenu").mouseleave(function () {
+      $(".submenu").hide();
+    });
+
+    /**검색영역**/
+    $(".search input").hide();
+    $(".search button").hide();
+
+    $(".searchIcon").mouseover(function () {
+      $(".search input").slideDown();
+      $(".search button").slideDown();
+    });
+
+  });
+</script>
+<body>
+<div id="sidebar">
+  <div id="menu_head">
+    <li id="head_list">
+      <div class="logo"><p> Mega market</p></div>
+      <div class="search_area"><button class="searchIcon"><img class = "img_searchIcon" src ="/images/search.png" width="50px" height="50px" ></button></div>
+      <form action="/productSearch" method="get">
+        <div class="search">
+          <input type="text" placeholder="검색어를 입력해주세요." class="searchInput" name="searchText">
+          <div class="btnSearchDiv01">
+            <button type="submit" class="btnSearch" style="width:30px; background-color: white;">
+              <img src="/images/glasses01.png" alt="" class="glasses">
+            </button>
+          </div>
+        </div>
+      </form>
+    </li>
+  </div>
+  <div id = "menu_profile">
+    <li id = "profile_area">
+      <div class = "profile_icon"><img src="/images/profile.png" alt="사람 아이콘" width="50px" height="50px"></div>
+      <div class="nickname">
+        <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:text="${login}" id="unlogined" style="text-decoration: none;"></a>
+        <!--                <a href="/loginForm02" class="blind" th:if="${loginCheck} == 'unlogined'" th:value="${login}" id="unlogined" style="text-decoration: none;"></a>-->
+        <!--<span class = "blind unlogined" th:if="${loginCheck} == 'unlogined'" th:text="${login}"></span>-->
+        <span class = "blind logined" th:if="${loginCheck} == 'logined'" th:text="${userName}" id="logined"></span>
+      </div>
+    </li>
+  </div>
+  <a th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</a>
+  <!--    <button th:if="${logoutCheck} == 'logoutCheck'" type="button" class="logoutCheck">logout</button>-->
+  <div id = "menu_area">
+
+    <ul role="menu">
+      <li class = "myPage">
+        <a href= "/myPage" style="text-decoration:none">
+          <!-- 추가-->
+          <img  src="/images/me.png" width="30px" height="30px" th:if="${loginCheck} == 'logined'" ><span th:if="${loginCheck} == 'logined'">마이페이지</span>
+        </a>
+      </li>
+      <li>
+        <a href= "/main" style="text-decoration:none">
+          <img src="/images/menu1.png" width="30px" height="30px">홈
+        </a>
+      </li>
+      <li>
+        <a href= "/newProduct" style="text-decoration:none">
+          <img src="/images/menu2.png" width="30px" height="30px">신상품
+        </a>
+      </li>
+      <li>
+        <a href= "/best" style="text-decoration:none">
+          <img src="/images/menu3.png" width="30px" height="30px">베스트
+        </a>
+      <li>
+      <li>
+        <a href= "/event" style="text-decoration:none">
+          <img src="/images/menu4.png" width="30px" height="30px" >이벤트
+        </a>
+      </li>
+      <li class = "catagory" >
+        <a href= "#" style="text-decoration:none">
+          <img src="/images/menu5.png" width="30px" height="30px">카테고리
+        </a>
+      </li>
+      <div class = "submenu">
+        <li>
+          <a href="/goodList/vegetable" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">채소
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fruitrice" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">과일,견과,쌀
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/fish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">수산,해산
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/snackbread" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">베이커리,과자
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/meat" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">정육,계란
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/oilnoodle" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">면,양념,오일
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/drink" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">생수,음료
+          </a>
+        </li>
+        <li>
+          <a href="/goodList/importantdish" style="text-decoration:none">
+            <img src="/images/circle.png" width="3px" height="3px">메인요리
+          </a>
+        </li>
+      </div>
+      <!-- 추가-->
+
+    </ul>
+    <!--        <button type="button" th:if="${logoutCheck} == 'logoutCheck'" class="logoutCheck">logout</button>-->
+  </div>
+</div>
+<!-- modal -->
+<div class="modal">
+  <div class="modal_body"><img src="/images/backIcon.png" alt="뒤로가기" class="backImg"><p class="addresslist p01">배송지목록</p>
+    <div class="stick01"></div>
+    <div class="addressInfo">
+
+      <span class="name" th:text="${name}">김동현</span><br>
+      <span class="basicAddress">기본배송지</span><br>
+      <div class="AddressDiv"><span class="RealAddress RealBigAddress" th:text="${BigAddress}"></span><br><span class="RealAddress RealDetailAddress" th:text="${DetailAddress}"></span></div>
+      <span class="phoneNum" th:text="${phone}"></span><br>
+      <button type="button" class="addressModify">수정</button>
+    </div>
+  </div>
+</div>
+<div class="modal02">
+  <div class="modal_body02"><img src="/images/backIcon.png" alt="뒤로가기" class="backImg02"><p class="addresslist p01">배송지수정</p>
+    <div class="stick02"></div>
+    <div class="addressInfo">
+      <input type="text" class="inputAddress input01" placeholder="주소 입력"><br>
+      <input type="text" class="inputAddressDetail input01" placeholder="상세 주소 입력" id="inputAddressDetail01">
+      <button type="button" class="addressModifyFinal button01">주소 수정</button>
+    </div>
+  </div>
+</div>
+<div id="main">
+<figure>
+  <figcaption>회원정보수정</figcaption>
+  <!-- table -->
+  <table>
+    <tr>
+      <td width="100">아이디</td>
+      <td width="300" th:text="${id}"></td>
+    </tr>
+    <tr>
+      <td width="100">이름</td>
+      <td width="300" th:text="${name}"></td>
+    </tr>
+    <tr>
+      <td width="100">휴대폰번호</td>
+      <td width="300" th:text="${phone}"></td>
+    </tr>
+    <tr>
+      <td width="100" height="200" class="changePw">비밀번호변경</td>
+      <td width="300" height="200">
+<!--        <div>-->
+          <p class="p01">현재 비밀번호</p> <input type="password" class="nowPw input01"><br>
+          <p class="p01">새 비밀번호</p> <input type="password" class="newPw input01"><br>
+          <p class="p01">비밀번호 다시 입력</p> <input type="password" class="newPwAgain input01"><br>
+          <button type="button" class="btnChangePw button01">비밀번호 변경</button><p class="showText p01"></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="100">배송지</td>
+      <td width="300">배송지 주소 관리는 <button type="button" class="address button01">[배송지 관리]</button>에서 수정합니다.</td>
+    </tr>
+    <tr>
+      <td width="100">수신설정</td>
+      <td width="300"></td>
+    </tr>
+  </table>
+</figure>
+<button type="button" class="memOut button01">회원탈퇴</button><br>
+<button type="button" class="modify button01" th:onclick="location.href='/main'">메인화면</button>
+</div>
+<input type="hidden" th:value="${pw}" class="InputNowPw">
+<input type="hidden" th:value="${phone}" class="AjaxPhone">
+<input type="hidden" th:value="${nowSnsLoginState}" class="nowSnsLogin">
+<input type="hidden" class="googleLogin" th:value="${googleLogin}">
+<input type="hidden" class="kakaoLogin" th:value="${kakaoLogin}">
+
+<script>
+  const body = document.querySelector('body');
+  const modal = document.querySelector('.modal');
+  const modal02 = document.querySelector('.modal02');
+  const backImg = document.querySelector('.backImg');
+  const backImg02 = document.querySelector('.backImg02');
+  const addressModifyFinal = document.querySelector('.addressModifyFinal');
+
+  $('.address').click(function(){
+    modal.classList.toggle('show');
+    console.log(modal);
+    if (modal.classList.contains('show')) {
+      // body.style.overflow = 'hidden';
+      $('#main').css('display' , 'none');
+    }
+  });
+
+  $('.addressModify').click(function(){
+    modal02.classList.toggle('show02');
+    console.log(modal02);
+    if(modal02.classList.contains('show02')){
+      modal.style.overflow = 'hidden';
+    }
+  })
+  /*        modal.addEventListener('click', (event) => {
+              console.log(1);
+              if(event.target === modal){
+                  modal.classList.toggle('show');
+
+                  if(!modal.classList.contains('show')){
+                      console.log(2);
+                      body.style.overflow = 'auto';
+                  }
+              }
+          });
+  */
+
+  backImg.addEventListener('click', (event) => {
+    if(event.target === backImg){
+      modal.classList.toggle('show');
+    }
+    if(!modal.classList.contains('show')){
+      // body.style.overflow = 'auto';
+      $('#main').css('display' , 'block');
+    }
+  });
+
+  backImg02.addEventListener('click' , (event) => {
+    if(event.target === backImg02){
+      modal02.classList.toggle('show02');
+    }
+    if(!modal02.classList.contains('show02')){
+      modal.style.overflow ='auto';
+    }
+  });
+
+  addressModifyFinal.addEventListener('click' ,(event) =>{
+    if($('.inputAddress').val() == "" || $('.inputAddressDetail') == "" || $('.inputAddressDetail') == null || $('.inputAddress') == null){
+      alert("주소를 입력해주세요");
+    }
+    else{
+      if(event.target === addressModifyFinal){
+        modal02.classList.toggle('show02');
+      }
+      if(!modal02.classList.contains('show02')){
+        modal.style.overflow = 'auto';
+      }
+    }
+  });
+
+
+  // 주소 발생
+  document.querySelector(".inputAddress").addEventListener("click", function(){ //주소입력칸을 클릭하면
+    //카카오 지도 발생
+    new daum.Postcode({
+      oncomplete: function(data) { //선택시 입력값 세팅
+        document.querySelector(".inputAddress").value = data.address; // 주소 넣기
+        document.querySelector("input[id=inputAddressDetail01]").focus(); //상세입력 포커싱
+      }
+    }).open();
+  });
+
+  $('.btnChangePw').click(function (){
+    console.log()
+    if($('.InputNowPw').val() == $('.nowPw').val() && $('.newPw').val() == $('.newPwAgain').val()){
+
+      $.ajax({
+        url : "/memInfoFixPw",
+        type : "post",
+        data : {
+          "changedPw" : $('.newPw').val(),
+          "phone" : $('.AjaxPhone').val()
+        },
+        success : function () {
+          console.log("비밀번호 바꾼거 서버에 전송성공");
+          alert("비밀번호 변경 완료!");
+        },
+        error : function () {
+          console.log("비밀번호 바꾼거 서버에 전송실패");
+        }
+      });
+    }
+    else if($('.InputNowPw').val() != $('.nowPw').val() && $('.newPw').val() == $('.newPwAgain').val()){
+      alert(" 현재비밀번호가 틀렸습니다.");
+    }
+    else if($('.InputNowPw').val() == $('.nowPw').val() && $('.newPw').val() != $('.newPwAgain').val()){
+      alert(" 새 비밀번호의 비밀번호가 서로 다릅니다.");
+    }
+    else{
+      alert("비밀번호를 다시 확인해주세요");
+    }
+    $(".nowPw").val('');
+    $(".newPw").val('');
+    $(".newPwAgain").val('');
+  });
+
+  $('.addressModifyFinal').click(function () {
+    $.ajax({
+      url : "/addressModify" ,
+      type: "post",
+      data : {
+        "BigAddress" : $('.inputAddress').val(),
+        "DetailAddress" : $('.inputAddressDetail').val(),
+        "phone" : $('.AjaxPhone').val()
+      },
+      success : function (){
+        console.log("주소 전달 성공");
+        // modal02.classList.toggle('show02');
+        // console.log(modal02);
+        // if(modal02.classList.contains('show02')){
+        //   modal.style.overflow = 'hidden';
+        // }
+        $('.RealBigAddress').text($('.inputAddress').val());
+        $('.RealDetailAddress').text($('.inputAddressDetail').val());
+      },
+      error: function () {
+        console.log("주소 전달 실패");
+      }
+
+    });
+  });
+
+  $('.memOut').click(function () {
+
+    if(!confirm('삭제하시면 복구하실수 없습니다. \n 정말로 삭제하시겠습니까??')){
+      console.log("아니요 누름");
+      return false;
+    }else{
+      console.log("예 누름");
+      $.ajax({
+        url : "/deleteUser",
+        type: "post",
+        data : { "phone" : $('.AjaxPhone').val() },
+        success :function () {
+          console.log("회원 삭제 성공")
+          location.href = "/event";
+        },
+        error : function () {
+          console.log("실패~")
+        }
+
+      });
+    }
+  });
+
+  // p>현재 비밀번호</p> <input type="password" class="nowPw"><br>
+  // <p>새 비밀번호</p> <input type="password" class="newPw"><br>
+  //   <p>비밀번호 다시 입력</p> <input type="password" class="newPwAgain"><br>
+  //   <button type="button" class="btnChangePw">비밀번호 변경</button>
+  console.log("nowSnsLogin : " + $('.nowSnsLogin').val());
+  if($('.nowSnsLogin').val() == "true"){
+    $('.nowPw').attr("readonly",true).attr("disabled",false);
+    $('.newPw').attr("readonly",true).attr("disabled",false);
+    $('.newPwAgain').attr("readonly",true).attr("disabled",false);
+    $('.btnChangePw').attr("disabled", true);
+    $('.showText').text("sns 로그인 비밀번호 변경 x")
+  }else{
+    $('.nowPw').attr("readonly",false).attr("disabled",false);
+    $('.newPw').attr("readonly",false).attr("disabled",false);
+    $('.newPwAgain').attr("readonly",false).attr("disabled",false);
+    $('.btnChangePw').attr("disabled", false);
+  }
+
+  $('.logoutCheck').click(function () {
+
+    var googleLogin = $('.googleLogin').val();
+    var kakaoLogin =  $('.kakaoLogin').val();
+    console.log("googleLogin : " + googleLogin);
+    console.log("kakaoLogin : " + kakaoLogin);
+    if(googleLogin == "true"){
+      location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:80/snsLogout";
+    }
+    else if(kakaoLogin == "true"){
+      location.href = "https://kauth.kakao.com/oauth/logout?client_id=8a508edf449a39d0fcb2078d37966226&logout_redirect_uri=http://localhost/snsLogout";
+    }else{
+      // location.href = "/loginForm02";
+
+      $.ajax({
+        url : '/logoutForUser',
+        type : 'get',
+        data : {
+
+        },
+        success : function (result) {
+          console.log("로그아웃 요청 성공");
+          console.log("result : " + result);
+          location.href="/loginForm02?retryCheck=no";
+        },
+        error : function () {
+          console.log("로그아웃 요청 실패");
+        }
+      });
+    }
+  });
+
+</script>
+</body>
+</html>
